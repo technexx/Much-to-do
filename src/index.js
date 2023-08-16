@@ -3,6 +3,13 @@ import { compareAsc, format } from 'date-fns'
 
 createDomElements()
 
+const addProjectButtonListener = () => {
+    const button = document.querySelector("#add-project-button")
+    button.addEventListener("click", () => {
+        console.log("clicked!")
+    })
+}
+
 class Projects {
     constructor (projectName, list) {
         this.projectName = projectName
@@ -51,3 +58,5 @@ function createAndLogDummyObjects() {
     
     console.log(projectOne)
 }
+
+addProjectButtonListener()
