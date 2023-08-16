@@ -5,6 +5,7 @@ export function createDomElements() {
     content.appendChild(addProjectButton())
     content.appendChild(projectCardContainer())
     content.appendChild(addProjectPopUp())
+    setDefaultAddProjectPopUpVisibility()
 }
 
 export function setEventListeners() {
@@ -52,6 +53,11 @@ const addProjectPopUp = () => {
     const div = document.createElement("div")
     div.classList.add("add-project-popup")
     return div
+}
+
+const setDefaultAddProjectPopUpVisibility = () => {
+    const popup = document.querySelector(".add-project-popup")
+    popup.setAttribute("id", "invisible")
 }
 
 const toggleAddProjectPopUpVisibility = (makeVisible) => {
