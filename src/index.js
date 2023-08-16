@@ -1,14 +1,10 @@
-import {createDomElements} from "./domElements.js"
+import { createDomElements } from "./domElements.js"
+import { setEventListeners } from "./domElements.js"
 import { compareAsc, format } from 'date-fns'
+import './style.css';
 
 createDomElements()
-
-const addProjectButtonListener = () => {
-    const button = document.querySelector("#add-project-button")
-    button.addEventListener("click", () => {
-        console.log("clicked!")
-    })
-}
+setEventListeners()
 
 class Projects {
     constructor (projectName, list) {
@@ -58,5 +54,3 @@ function createAndLogDummyObjects() {
     
     console.log(projectOne)
 }
-
-addProjectButtonListener()

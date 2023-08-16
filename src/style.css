@@ -1,0 +1,10 @@
+.add-project-popup {
+    width: 200px;
+    height: 200px;
+    border: 3px solid black;
+    background-color: aliceblue;
+}
+
+.add-project-header {
+    font-size: 30px;
+}
