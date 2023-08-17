@@ -1,3 +1,7 @@
+import { addProject } from "./databaseOps"
+import { addList } from "./databaseOps"
+import { addListItem } from "./databaseOps"
+
 export function setEventListeners() {
     addProjectButtonListener()
     addProjectSubmitButtonListener()
@@ -10,18 +14,20 @@ const addProjectButtonListener = () => {
     button.addEventListener("click", () => {
         if (popUp.getAttribute("id") === "invisible") {
             toggleAddProjectPopUpVisibility(true)
-            console.log("is invisible")
         } else {
             toggleAddProjectPopUpVisibility(false)
-            console.log("is visible")
         }
     })
 }
 
+//Form submission reloads page, thus skipping console logs.
 const addProjectSubmitButtonListener = () => {
     const button = document.querySelector("#add-project-submit-button")
-    button.addEventListener("click", () => {
-        console.log("clicked!")
+
+    button.addEventListener("click", (event) => {
+        event.preventDefault()
+        const addProjectTitleInput = document.querySelector("#add-project-title-input")
+        addProject(addProjectTitleInput.value, ["one", "two"])
     })
 }
 

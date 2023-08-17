@@ -13,11 +13,6 @@ export function createDomElements() {
     addProjectPopUpContent.appendChild(addProjectForm())
 }
 
-export function setEventListeners() {
-    addProjectButtonListener()
-    addProjectSubmitButtonListener()
-}
-
 const projectHeader = (title) => {
     const div = document.createElement("div")
     div.classList.add("add-project-header")
@@ -32,21 +27,6 @@ const addProjectButton = () => {
     button.style.width = "100px"
     button.style.backgroundColor = "white"
     return button
-}
-
-const addProjectButtonListener = () => {
-    const button = document.querySelector("#add-project-button")
-    const popUp = document.querySelector(".add-project-popup")
-
-    button.addEventListener("click", () => {
-        if (popUp.getAttribute("id") === "invisible") {
-            toggleAddProjectPopUpVisibility(true)
-            console.log("is invisible")
-        } else {
-            toggleAddProjectPopUpVisibility(false)
-            console.log("is visible")
-        }
-    })
 }
 
 const addProjectPopUp = () => {
@@ -68,6 +48,7 @@ const addProjectForm = () => {
     title.placeholder = "Title"
     title.required = "true"
 
+    //Default behavior of form button is to submit.
     const submitButton = document.createElement("button")
     submitButton.setAttribute("id", "add-project-submit-button")
     submitButton.setAttribute("form", "add-project-form")
@@ -80,27 +61,9 @@ const addProjectForm = () => {
     return addProjectForm
 }
 
-const addProjectSubmitButtonListener = () => {
-    const button = document.querySelector("#add-project-submit-button")
-    button.addEventListener("click", () => {
-        console.log("clicked!")
-    })
-}
-
 const setDefaultAddProjectPopUpVisibility = () => {
     const popup = document.querySelector(".add-project-popup")
     popup.setAttribute("id", "invisible")
-}
-
-const toggleAddProjectPopUpVisibility = (makeVisible) => {
-    const popUp = document.querySelector(".add-project-popup")
-    if (makeVisible) {
-        popUp.setAttribute("id", "visible")
-        popUp.style.display = "flex"
-    } else {
-        popUp.setAttribute("id", "invisible")
-        popUp.style.display = "none"
-    }
 }
 
 const projectCardContainer = () => {
