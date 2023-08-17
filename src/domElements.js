@@ -6,6 +6,9 @@ export function createDomElements() {
     content.appendChild(projectCardContainer())
     content.appendChild(addProjectPopUp())
     setDefaultAddProjectPopUpVisibility()
+
+    const addProjectPopUpContent = document.querySelector(".add-project-popup")
+    addProjectPopUpContent.appendChild(addProjectForm())
 }
 
 export function setEventListeners() {
@@ -43,16 +46,28 @@ const addProjectButtonListener = () => {
     })
 }
 
-const projectCardContainer = () => {
-    const div = document.createElement("div")
-    div.classList.add("project-container")
-    return div
-}
-
 const addProjectPopUp = () => {
     const div = document.createElement("div")
     div.classList.add("add-project-popup")
+    
     return div
+}
+
+const addProjectForm = () => {
+    const addProjectForm = document.createElement("form")
+    addProjectForm.setAttribute("id", "add-project-form")
+
+    const title = document.createElement("input")
+    title.id = "add-project-title-input"
+    title.type = "text"
+    title.minLength = "1"
+    title.maxLength = "40"
+    title.placeholder = "Title"
+    title.required = "true"
+
+    addProjectForm.appendChild(title)
+
+    return addProjectForm
 }
 
 const setDefaultAddProjectPopUpVisibility = () => {
@@ -69,4 +84,10 @@ const toggleAddProjectPopUpVisibility = (makeVisible) => {
         popUp.setAttribute("id", "invisible")
         popUp.style.display = "none"
     }
+}
+
+const projectCardContainer = () => {
+    const div = document.createElement("div")
+    div.classList.add("project-container")
+    return div
 }
