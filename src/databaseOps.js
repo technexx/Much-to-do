@@ -2,9 +2,15 @@ const ProjectsArray = []
 const ListArray = []
 const ListItemsArray = []
 
-export function addProject(projectName, list) {
-    ProjectsArray.push(new Projects(projectName, list))
+export function addProject(projectName) {
+    ProjectsArray.push(new Projects(projectName, []))
     console.log(ProjectsArray)
+}
+
+export function editProject(index, title, list) {
+    const project = ProjectsArray[index]
+    project.title = title
+    project.list = list
 }
 
 export function addList(list) {
@@ -16,8 +22,8 @@ export function addListItem(item) {
 }
 
 class Projects {
-    constructor (projectName, list) {
-        this.projectName = projectName
+    constructor (title, list) {
+        this.title = title
         this.list = list
     }
 }

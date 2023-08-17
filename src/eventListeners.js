@@ -27,7 +27,7 @@ const addProjectSubmitButtonListener = () => {
     button.addEventListener("click", (event) => {
         event.preventDefault()
         const addProjectTitleInput = document.querySelector("#add-project-title-input")
-        addProject(addProjectTitleInput.value, ["one", "two"])
+        addProject(addProjectTitleInput.value)
     })
 }
 
