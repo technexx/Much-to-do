@@ -15,6 +15,7 @@ export function createDomElements() {
 
 export function setEventListeners() {
     addProjectButtonListener()
+    addProjectSubmitButtonListener()
 }
 
 const projectHeader = (title) => {
@@ -77,6 +78,13 @@ const addProjectForm = () => {
     addProjectForm.appendChild(submitButton)
 
     return addProjectForm
+}
+
+const addProjectSubmitButtonListener = () => {
+    const button = document.querySelector("#add-project-submit-button")
+    button.addEventListener("click", () => {
+        console.log("clicked!")
+    })
 }
 
 const setDefaultAddProjectPopUpVisibility = () => {
