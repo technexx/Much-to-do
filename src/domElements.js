@@ -1,3 +1,5 @@
+import { sub } from "date-fns"
+
 const content = document.querySelector(".content")
 
 export function createDomElements() {
@@ -65,7 +67,14 @@ const addProjectForm = () => {
     title.placeholder = "Title"
     title.required = "true"
 
+    const submitButton = document.createElement("button")
+    submitButton.setAttribute("id", "add-project-submit-button")
+    submitButton.setAttribute("form", "add-project-form")
+    submitButton.type = "submit"
+    submitButton.innerText = "Submit"
+
     addProjectForm.appendChild(title)
+    addProjectForm.appendChild(submitButton)
 
     return addProjectForm
 }
