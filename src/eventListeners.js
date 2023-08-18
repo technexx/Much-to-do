@@ -1,6 +1,7 @@
 import { addProject } from "./databaseOps"
 import { addList } from "./databaseOps"
 import { addListItem } from "./databaseOps"
+import { clearProjectCards } from "./domElements"
 import { populateProjectCards } from "./domElements"
 
 export function setEventListeners() {
@@ -32,6 +33,7 @@ const addProjectSubmitButtonListener = () => {
         const addProjectTitleInput = document.querySelector("#add-project-title-input")
         addProject(addProjectTitleInput.value)
 
+        clearProjectCards()
         populateProjectCards()
     })
 }

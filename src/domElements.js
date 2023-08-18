@@ -81,6 +81,9 @@ export function populateProjectCards() {
     const projectContainer = document.querySelector(".project-container")
 
     ProjectsArray.forEach(function callback(value, index) {
+        const projectDiv = document.createElement("div")
+        projectDiv.classList.add("projects")
+
         const titleDiv = document.createElement("div")
         const listDiv = document.createElement("div")
         titleDiv.classList.add("project-title")
@@ -89,9 +92,19 @@ export function populateProjectCards() {
         titleDiv.innerText = ProjectsArray[index].title
         listDiv.innerText = ProjectsArray[index].list
 
-        projectContainer.appendChild(titleDiv)
-        projectContainer.appendChild(listDiv)
+        projectDiv.appendChild(titleDiv)
+        projectDiv.appendChild(listDiv)
 
-        console.log(value[index])
+        projectContainer.appendChild(projectDiv)
+
+        // console.log(value[index])
     })
+}
+
+export function clearProjectCards() {
+    const projects = document.querySelectorAll(".projects")
+    projects.forEach(project => {
+        project.remove()
+    })
+    console.log(projects)
 }
