@@ -3,6 +3,12 @@
     padding: 0px;   
 }
 
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .add-project-popup {
     position: absolute;
     top: 50vh;
@@ -12,8 +18,7 @@
     transform: translate(-50%, -50%);
     border: 3px solid black;
     background-color: aliceblue;
-    /* display: none; */
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
 }
@@ -36,5 +41,20 @@
     width: 200px;
 }
 
+.project-container {
+    border: 2px solid black;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
+}
+
+.projects {
+    border: 2px solid blue;
+    height: 200px;
+    gap: 30px;
+}
+
 .add-project-header {
+    font-size: 36px;
+    margin-bottom: 40px;
 }
