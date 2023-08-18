@@ -1,9 +1,39 @@
+* {
+    margin: 0px;
+    padding: 0px;   
+}
+
 .add-project-popup {
-    width: 200px;
-    height: 200px;
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    width: 500px;
+    height: 500px;
+    transform: translate(-50%, -50%);
     border: 3px solid black;
     background-color: aliceblue;
-    display: none;
+    /* display: none; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#add-project-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 150px;
+}
+
+#add-project-title-input {
+    height: 75px;
+    width: 350px;
+    font-size: 32px;
+}
+
+#add-project-submit-button {
+    height: 50px;
+    width: 200px;
 }
 
 .add-project-header {
