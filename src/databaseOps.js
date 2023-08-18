@@ -1,6 +1,6 @@
-const ProjectsArray = []
-const ListArray = []
-const ListItemsArray = []
+export const ProjectsArray = []
+export const ListArray = []
+export const ListItemsArray = []
 
 export function addProject(projectName) {
     ProjectsArray.push(new Projects(projectName, []))

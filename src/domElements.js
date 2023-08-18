@@ -1,3 +1,6 @@
+import { ProjectsArray } from "./databaseOps"
+import { ListArray } from "./databaseOps"
+import { ListItemsArray } from "./databaseOps"
 import { sub } from "date-fns"
 
 const content = document.querySelector(".content")
@@ -8,6 +11,8 @@ export function createDomElements() {
     content.appendChild(projectCardContainer())
     content.appendChild(addProjectPopUp())
     setDefaultAddProjectPopUpVisibility()
+    
+    projectCards()
 
     const addProjectPopUpContent = document.querySelector(".add-project-popup")
     addProjectPopUpContent.appendChild(addProjectForm())
@@ -70,4 +75,17 @@ const projectCardContainer = () => {
     const div = document.createElement("div")
     div.classList.add("project-container")
     return div
+}
+
+const projectCards = () => {
+    ProjectsArray.forEach(function callback(value, index) {
+        console.log(value[index])
+    })
+    const titleDiv = document.createElement("div")
+    const listDiv = document.createElement("div")
+    titleDiv.classList.add("project-title")
+    listDiv.classList.add("project-item-array")
+
+    titleDiv.innerText = ProjectsArray.title
+    listDiv.innerText = ProjectsArray.list
 }

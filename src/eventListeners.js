@@ -28,6 +28,7 @@ const addProjectSubmitButtonListener = () => {
         event.preventDefault()
         const addProjectTitleInput = document.querySelector("#add-project-title-input")
         addProject(addProjectTitleInput.value)
+        toggleAddProjectPopUpVisibility(false)
     })
 }
 
