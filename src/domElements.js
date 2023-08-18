@@ -8,14 +8,14 @@ const content = document.querySelector(".content")
 export function createDomElements() {
     content.appendChild(projectHeader("Add a project!"))
     content.appendChild(addProjectButton())
-    content.appendChild(projectCardContainer())
     content.appendChild(addProjectPopUp())
+    content.appendChild(projectCardContainer())
     setDefaultAddProjectPopUpVisibility()
-    
-    projectCards()
 
     const addProjectPopUpContent = document.querySelector(".add-project-popup")
     addProjectPopUpContent.appendChild(addProjectForm())
+
+    populateProjectCards()
 }
 
 const projectHeader = (title) => {
@@ -77,15 +77,21 @@ const projectCardContainer = () => {
     return div
 }
 
-const projectCards = () => {
+export function populateProjectCards() {
+    const projectContainer = document.querySelector(".project-container")
+
     ProjectsArray.forEach(function callback(value, index) {
+        const titleDiv = document.createElement("div")
+        const listDiv = document.createElement("div")
+        titleDiv.classList.add("project-title")
+        listDiv.classList.add("project-item-array")
+    
+        titleDiv.innerText = ProjectsArray[index].title
+        listDiv.innerText = ProjectsArray[index].list
+
+        projectContainer.appendChild(titleDiv)
+        projectContainer.appendChild(listDiv)
+
         console.log(value[index])
     })
-    const titleDiv = document.createElement("div")
-    const listDiv = document.createElement("div")
-    titleDiv.classList.add("project-title")
-    listDiv.classList.add("project-item-array")
-
-    titleDiv.innerText = ProjectsArray.title
-    listDiv.innerText = ProjectsArray.list
 }

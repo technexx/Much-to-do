@@ -1,6 +1,7 @@
 import { addProject } from "./databaseOps"
 import { addList } from "./databaseOps"
 import { addListItem } from "./databaseOps"
+import { populateProjectCards } from "./domElements"
 
 export function setEventListeners() {
     addProjectButtonListener()
@@ -26,9 +27,12 @@ const addProjectSubmitButtonListener = () => {
 
     button.addEventListener("click", (event) => {
         event.preventDefault()
+        toggleAddProjectPopUpVisibility(false)
+
         const addProjectTitleInput = document.querySelector("#add-project-title-input")
         addProject(addProjectTitleInput.value)
-        toggleAddProjectPopUpVisibility(false)
+
+        populateProjectCards()
     })
 }
 
