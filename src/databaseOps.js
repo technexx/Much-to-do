@@ -2,10 +2,50 @@ export const ProjectsArray = []
 export const ListArray = []
 export const ListItemsArray = []
 
-export function addProject() {
-    const addProjectTitleInput = document.querySelector("#add-project-title-input")
-    saveLocalObject("project", addProjectTitleInput.value)
+export function addLocalProject() {
+    deleteAllLocalObjects()
+
+    const content = document.querySelector("#add-project-title-input")
+    localStorage.setItem("project-title-" + (parseInt(localStorage.length +1)), (content.value))
+    localStorage.setItem("project-items-" + (parseInt(localStorage.length )), JSON.stringify(["hello", "goodbye"]))
+
     console.log(localStorage)
+}
+
+export function getProjectTitles() {
+    let projectTitles = []
+
+    for (let i=0; i<localStorage.length; i++) {
+        if(localStorage.key(i).includes("project-title")) {
+            projectTitles.push(localStorage.getItem(localStorage.key(i)))
+        }
+    }
+    return projectTitles
+}
+
+export function getProjectItems() {
+    let projectItems = []
+
+    for (let i=0; i<localStorage.length; i++) {
+        if (localStorage.key(i).includes("project-items")) {
+            projectItems.push(localStorage.getItem(localStorage.key(i)))
+        }
+    }
+    return projectItems
+}
+
+export function deleteLocalObject(index) {
+    if (localStorage.key(index) !== undefined) {
+        localStorage.removeItem(localStorage.key(index))
+    }
+}
+
+export function deleteAllLocalObjects() {
+    localStorage.clear()
+}
+
+export function retrieveProject(index) {
+    const projectTitle = localStorage.getItem()
 }
 
 export function editProject(index, title, list) {
@@ -52,18 +92,4 @@ function createAndLogDummyObjects() {
     const projectOne = new Projects("Test Project", listOne)
     
     console.log(projectOne)
-}
-
-export function saveLocalObject(key, value) {
-    localStorage.setItem(key + "-" + ( parseInt(localStorage.length +1)), value)
-}
-
-export function deleteLocalObject(index) {
-    if (localStorage.key(index) !== undefined) {
-        localStorage.removeItem(localStorage.key(index))
-    }
-}
-
-export function deleteAllLocalObjects() {
-    localStorage.clear()
 }

@@ -1,6 +1,8 @@
 import { ProjectsArray } from "./databaseOps"
 import { ListArray } from "./databaseOps"
 import { ListItemsArray } from "./databaseOps"
+import { getProjectTitles } from "./databaseOps"
+import { getProjectItems } from "./databaseOps"
 import { sub } from "date-fns"
 
 const content = document.querySelector(".content")
@@ -78,9 +80,14 @@ const projectCardContainer = () => {
 }
 
 export function populateProjectCards() {
+    const projectTitles = getProjectTitles()
+    const projectItems = getProjectItems()
     const projectContainer = document.querySelector(".project-container")
 
-    for (let i=0; i<localStorage.length; i++) {
+    console.log(projectTitles)
+    console.log(projectItems)
+
+    for (let i=0; i<projectTitles.length; i++) {
         const projectDiv = document.createElement("div")
         projectDiv.classList.add("projects")
 
@@ -89,15 +96,19 @@ export function populateProjectCards() {
         titleDiv.classList.add("project-title")
         listDiv.classList.add("project-item-array")
     
-        titleDiv.innerText = localStorage.getItem(localStorage.key(i))
-        // listDiv.innerText = ProjectsArray[index].list
-
+        titleDiv.innerText = projectTitles[i]
         projectDiv.appendChild(titleDiv)
-        // projectDiv.appendChild(listDiv)
+
+        const projectItemsArray = JSON.parse(projectItems[i])
+        projectDiv.appendChild(projectItemsArray)
+
+        for (let j=0; j<projectItemsArray.length; j++) {
+            
+        }
+
+        projectDiv.appendChild(listDiv)
 
         projectContainer.appendChild(projectDiv)
-
-        // console.log(value[index])
     }
 }
 
