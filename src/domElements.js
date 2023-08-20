@@ -80,7 +80,7 @@ const projectCardContainer = () => {
 export function populateProjectCards() {
     const projectContainer = document.querySelector(".project-container")
 
-    ProjectsArray.forEach(function callback(value, index) {
+    for (let i=0; i<localStorage.length; i++) {
         const projectDiv = document.createElement("div")
         projectDiv.classList.add("projects")
 
@@ -89,16 +89,16 @@ export function populateProjectCards() {
         titleDiv.classList.add("project-title")
         listDiv.classList.add("project-item-array")
     
-        titleDiv.innerText = ProjectsArray[index].title
-        listDiv.innerText = ProjectsArray[index].list
+        titleDiv.innerText = localStorage.getItem(localStorage.key(i))
+        // listDiv.innerText = ProjectsArray[index].list
 
         projectDiv.appendChild(titleDiv)
-        projectDiv.appendChild(listDiv)
+        // projectDiv.appendChild(listDiv)
 
         projectContainer.appendChild(projectDiv)
 
         // console.log(value[index])
-    })
+    }
 }
 
 export function clearProjectCards() {

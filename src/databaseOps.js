@@ -2,8 +2,10 @@ export const ProjectsArray = []
 export const ListArray = []
 export const ListItemsArray = []
 
-export function addProject(projectName) {
-    ProjectsArray.push(new Projects(projectName, []))
+export function addProject() {
+    const addProjectTitleInput = document.querySelector("#add-project-title-input")
+    saveLocalObject("project", addProjectTitleInput.value)
+    console.log(localStorage)
 }
 
 export function editProject(index, title, list) {
@@ -57,11 +59,9 @@ export function saveLocalObject(key, value) {
 }
 
 export function deleteLocalObject(index) {
-    console.log(localStorage.key(index))
     if (localStorage.key(index) !== undefined) {
         localStorage.removeItem(localStorage.key(index))
     }
-    console.log(localStorage)
 }
 
 export function deleteAllLocalObjects() {
