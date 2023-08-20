@@ -100,10 +100,13 @@ export function populateProjectCards() {
         projectDiv.appendChild(titleDiv)
 
         const projectItemsArray = JSON.parse(projectItems[i])
-        projectDiv.appendChild(projectItemsArray)
+        // projectDiv.appendChild(projectItemsArray)
 
         for (let j=0; j<projectItemsArray.length; j++) {
-            
+            const itemDiv = document.createElement("div")
+            itemDiv.setAttribute("id", "project-list-item")
+            itemDiv.innerText = projectItemsArray[j]
+            listDiv.appendChild(itemDiv)
         }
 
         projectDiv.appendChild(listDiv)
