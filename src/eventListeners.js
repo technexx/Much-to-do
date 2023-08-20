@@ -1,6 +1,9 @@
 import { addProject } from "./databaseOps"
 import { addList } from "./databaseOps"
 import { addListItem } from "./databaseOps"
+import { saveLocalObject } from "./databaseOps"
+import { deleteLocalObject } from "./databaseOps"
+import { deleteAllLocalObjects } from "./databaseOps"
 import { clearProjectCards } from "./domElements"
 import { populateProjectCards } from "./domElements"
 
@@ -31,7 +34,10 @@ const addProjectSubmitButtonListener = () => {
         toggleAddProjectPopUpVisibility(false)
 
         const addProjectTitleInput = document.querySelector("#add-project-title-input")
+        deleteLocalObject(0)
+
         addProject(addProjectTitleInput.value)
+        saveLocalObject("project", addProjectTitleInput.value)
 
         clearProjectCards()
         populateProjectCards()

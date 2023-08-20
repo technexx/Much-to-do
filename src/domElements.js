@@ -106,5 +106,5 @@ export function clearProjectCards() {
     projects.forEach(project => {
         project.remove()
     })
-    console.log(projects)
+    // console.log(projects)
 }

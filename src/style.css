@@ -9,6 +9,12 @@
     align-items: center;
 }
 
+.add-project-header {
+    font-size: 36px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .add-project-popup {
     position: absolute;
     top: 50vh;
@@ -34,11 +40,13 @@
     height: 75px;
     width: 350px;
     font-size: 32px;
+    padding-left: 15px;
 }
 
 #add-project-submit-button {
     height: 50px;
     width: 200px;
+    font-size: 30px;
 }
 
 .project-container {
@@ -52,9 +60,5 @@
     border: 2px solid blue;
     height: 200px;
     gap: 30px;
-}
-
-.add-project-header {
-    font-size: 36px;
-    margin-bottom: 40px;
+    font-size: 20px;
 }

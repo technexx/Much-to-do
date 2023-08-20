@@ -4,7 +4,6 @@ export const ListItemsArray = []
 
 export function addProject(projectName) {
     ProjectsArray.push(new Projects(projectName, []))
-    console.log(ProjectsArray)
 }
 
 export function editProject(index, title, list) {
@@ -51,4 +50,20 @@ function createAndLogDummyObjects() {
     const projectOne = new Projects("Test Project", listOne)
     
     console.log(projectOne)
+}
+
+export function saveLocalObject(key, value) {
+    localStorage.setItem(key + "-" + ( parseInt(localStorage.length +1)), value)
+}
+
+export function deleteLocalObject(index) {
+    console.log(localStorage.key(index))
+    if (localStorage.key(index) !== undefined) {
+        localStorage.removeItem(localStorage.key(index))
+    }
+    console.log(localStorage)
+}
+
+export function deleteAllLocalObjects() {
+    localStorage.clear()
 }
