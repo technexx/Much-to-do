@@ -1,8 +1,4 @@
-import { ProjectsArray } from "./databaseOps"
-import { ListArray } from "./databaseOps"
-import { ListItemsArray } from "./databaseOps"
-import { getProjectTitles } from "./databaseOps"
-import { getProjectItems } from "./databaseOps"
+import { getProjectsFromLocalStorage } from "./databaseOps"
 import { sub } from "date-fns"
 
 const content = document.querySelector(".content")
@@ -80,14 +76,10 @@ const projectCardContainer = () => {
 }
 
 export function populateProjectCards() {
-    const projectTitles = getProjectTitles()
-    const projectItems = getProjectItems()
     const projectContainer = document.querySelector(".project-container")
+    const allProjects = getProjectsFromLocalStorage()
 
-    console.log(projectTitles)
-    console.log(projectItems)
-
-    for (let i=0; i<projectTitles.length; i++) {
+    for (let i=0; i<allProjects.length; i++) {
         const projectDiv = document.createElement("div")
         projectDiv.classList.add("projects")
 
@@ -101,16 +93,22 @@ export function populateProjectCards() {
         const listDiv = document.createElement("div")
         titleDiv.classList.add("project-title")
         listDiv.classList.add("project-item-array")
+
+        const project = JSON.parse(allProjects[i])
+        console.log(project)
+
+        titleDiv.innerText = project.title
+
+        const projectItems = project.list
     
-        titleDiv.innerText = projectTitles[i]
+        const projectsCulled = projectItems.replace("[", "").replace("]", "").replaceAll("\"", "")
+        const splitProjects = projectsCulled.split(",")
+        console.log(splitProjects)
 
-        const projectItemsArray = JSON.parse(projectItems[i])
-        // projectDiv.appendChild(projectItemsArray)
-
-        for (let j=0; j<projectItemsArray.length; j++) {
+        for (let j=0; j<splitProjects.length; j++) {
             const itemDiv = document.createElement("div")
             itemDiv.setAttribute("id", "project-list-item")
-            itemDiv.innerText = projectItemsArray[j]
+            itemDiv.innerText = splitProjects[j]
             listDiv.appendChild(itemDiv)
         }
 

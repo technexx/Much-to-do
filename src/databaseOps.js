@@ -2,40 +2,30 @@ export const ProjectsArray = []
 export const ListArray = []
 export const ListItemsArray = []
 
-export function addProject() {
+export function addProjectToLocalStorage() {
     deleteAllLocalObjects()
 
     const content = document.querySelector("#add-project-title-input")
-    localStorage.setItem("project-title-" + (parseInt(localStorage.length +1)), (content.value))
-    localStorage.setItem("project-items-" + (parseInt(localStorage.length )), JSON.stringify(["hello", "goodbye"]))
-
+    const project = new Project(content.value, JSON.stringify(["hello", "goodbye"]))
+    localStorage.setItem("project-" + (parseInt(localStorage.length +1)), JSON.stringify(project))
+    
     console.log(localStorage)
+    console.log(JSON.parse(localStorage.getItem(localStorage.key(0))))
+}
+
+export function getProjectsFromLocalStorage() {
+    let projects = []
+    for (let i=0; i<localStorage.length; i++) {
+        if (localStorage.key(i).includes("project-")) {
+            projects.push(localStorage.getItem(localStorage.key(i)))
+        }
+    }
+
+    return projects
 }
 
 export function addProjectItems() {
-    
-}
 
-export function getProjectTitles() {
-    let projectTitles = []
-
-    for (let i=0; i<localStorage.length; i++) {
-        if(localStorage.key(i).includes("project-title")) {
-            projectTitles.push(localStorage.getItem(localStorage.key(i)))
-        }
-    }
-    return projectTitles
-}
-
-export function getProjectItems() {
-    let projectItems = []
-
-    for (let i=0; i<localStorage.length; i++) {
-        if (localStorage.key(i).includes("project-items")) {
-            projectItems.push(localStorage.getItem(localStorage.key(i)))
-        }
-    }
-    return projectItems
 }
 
 export function deleteLocalObject(index) {
@@ -66,34 +56,34 @@ export function addListItem(item) {
     ListItemsArray.push(item)
 }
 
-class Projects {
+class Project {
     constructor (title, list) {
         this.title = title
         this.list = list
     }
 }
 
-class Lists {
+class List {
     constructor (listName, listItems) {
        this.listName = listName
        this.listItems = listItems 
     }
 }
 
-class ListItems {
+class ListItem {
     constructor (title, description, dueDate, priority, isCompleted) {
         this.title = title; this.description = description; this.dueDate = dueDate; this.priority = priority; this.isCompleted = isCompleted;
     }
 }
 
 function createAndLogDummyObjects() {
-    const listItemOne = new ListItems("itemOne", "does stuff", "1/1/2024", "low", false)
-    const listItemTwo = new ListItems("itemTwo", "does more stuff", "5/5/2054", "medium", true)
-    const listItemThree = new ListItems("itemThree", "does so much stuff", "3/3/2034", "high", false)
+    const listItemOne = new ListItem("itemOne", "does stuff", "1/1/2024", "low", false)
+    const listItemTwo = new ListItem("itemTwo", "does more stuff", "5/5/2054", "medium", true)
+    const listItemThree = new ListItem("itemThree", "does so much stuff", "3/3/2034", "high", false)
     
-    const listOne = new Lists("test list", [listItemOne, listItemTwo, listItemThree])
+    const listOne = new List("test list", [listItemOne, listItemTwo, listItemThree])
     
-    const projectOne = new Projects("Test Project", listOne)
+    const projectOne = new Project("Test Project", listOne)
     
     console.log(projectOne)
 }

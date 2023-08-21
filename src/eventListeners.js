@@ -1,4 +1,4 @@
-import { addProject } from "./databaseOps"
+import { addProjectToLocalStorage } from "./databaseOps"
 import { addList } from "./databaseOps"
 import { addListItem } from "./databaseOps"
 import { clearProjectCards } from "./domElements"
@@ -30,7 +30,7 @@ const addProjectSubmitButtonListener = () => {
         event.preventDefault()
         toggleAddProjectPopUpVisibility(false)
 
-        addProject()
+        addProjectToLocalStorage()
 
         clearProjectCards()
         populateProjectCards()
