@@ -91,13 +91,18 @@ export function populateProjectCards() {
         const projectDiv = document.createElement("div")
         projectDiv.classList.add("projects")
 
+        const addListItemButton = document.createElement("button")
+        addListItemButton.setAttribute("id", "add-list-item")
+        addListItemButton.innerHTML = "<img src='../src/images/pencil.svg'/>"
+        addListItemButton.style.width = "30px"
+        addListItemButton.style.backgroundColor = "white"        
+
         const titleDiv = document.createElement("div")
         const listDiv = document.createElement("div")
         titleDiv.classList.add("project-title")
         listDiv.classList.add("project-item-array")
     
         titleDiv.innerText = projectTitles[i]
-        projectDiv.appendChild(titleDiv)
 
         const projectItemsArray = JSON.parse(projectItems[i])
         // projectDiv.appendChild(projectItemsArray)
@@ -109,7 +114,9 @@ export function populateProjectCards() {
             listDiv.appendChild(itemDiv)
         }
 
+        projectDiv.appendChild(titleDiv)
         projectDiv.appendChild(listDiv)
+        projectDiv.appendChild(addListItemButton)
 
         projectContainer.appendChild(projectDiv)
     }

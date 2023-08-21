@@ -60,7 +60,9 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
 }
 
+/**Setting relative position allows other elements, e.g. our add-list-item, to be set via absolute*/
 .projects {
+    position: relative;
     display: flex;
     flex-direction: column;
     border: 2px solid blue;
@@ -79,4 +81,10 @@
 
 #project-list-item {
     margin-bottom: 10px;
+}
+
+#add-list-item {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }

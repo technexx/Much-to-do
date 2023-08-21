@@ -2,7 +2,7 @@ export const ProjectsArray = []
 export const ListArray = []
 export const ListItemsArray = []
 
-export function addLocalProject() {
+export function addProject() {
     deleteAllLocalObjects()
 
     const content = document.querySelector("#add-project-title-input")
@@ -10,6 +10,10 @@ export function addLocalProject() {
     localStorage.setItem("project-items-" + (parseInt(localStorage.length )), JSON.stringify(["hello", "goodbye"]))
 
     console.log(localStorage)
+}
+
+export function addProjectItems() {
+    
 }
 
 export function getProjectTitles() {
