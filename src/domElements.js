@@ -64,6 +64,32 @@ const addProjectForm = () => {
     return addProjectForm
 }
 
+const addListItemsForm = () => {
+    const listItemForm = document.createElement("form")
+    listItemForm.setAttribute("id", "add-list-items-form")
+
+    const title = document.createElement("input")
+    title.id = "add-list-item-title-input"
+    title.type = "text"
+    title.minLength = "1"
+    title.maxLength = "20"
+    title.placeholder = "Title"
+    title.required = "true"
+
+    const desc = document.createElement("input")
+    desc.id = "add-list-item-desc-input"
+    desc.type = "text"
+    desc.minLength = "1"
+    desc.maxLength = "40"
+    desc.placeholder = "Title"
+    desc.required = "true"
+
+    const dueDate = document.createElement("input")
+    dueDate.id = "add-list-item-due-date"
+
+    
+}
+
 const setDefaultAddProjectPopUpVisibility = () => {
     const popup = document.querySelector(".add-project-popup")
     popup.setAttribute("id", "invisible")
@@ -118,6 +144,15 @@ export function populateProjectCards() {
 
         projectContainer.appendChild(projectDiv)
     }
+}
+
+const populateListItems = () => {
+    const titlePar = document.createElement("p")
+    const descPar = document.createElement("p")
+
+    const dueDateDiv = document.createElement("div")
+    const priorityyDiv = document.createElement("div")
+    const isCompletedDiv = document.createElement("div")
 }
 
 export function clearProjectCards() {
