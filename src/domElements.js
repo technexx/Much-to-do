@@ -184,15 +184,6 @@ export function populateProjectCards() {
     }
 }
 
-const populateListItems = () => {
-    const titlePar = document.createElement("p")
-    const descPar = document.createElement("p")
-
-    const dueDateDiv = document.createElement("div")
-    const priorityyDiv = document.createElement("div")
-    const isCompletedDiv = document.createElement("div")
-}
-
 export function clearProjectCards() {
     const projects = document.querySelectorAll(".projects")
     projects.forEach(project => {

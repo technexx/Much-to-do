@@ -5,9 +5,12 @@ export const ListItemsArray = []
 export function addProjectToLocalStorage() {
     deleteAllLocalObjects()
 
+    const numberOfCurrentProject = getProjectsFromLocalStorage().length
+    // localStorage.setItem("project-array-item-" + (parseInt(numberOfCurrentProjects +1)))
+
     const content = document.querySelector("#add-project-title-input")
     const project = new Project(content.value, JSON.stringify(["hello", "goodbye"]))
-    localStorage.setItem("project-" + (parseInt(localStorage.length +1)), JSON.stringify(project))
+    localStorage.setItem(("project-" + numberOfCurrentProject), JSON.stringify(project))
     
     console.log(localStorage)
     console.log(JSON.parse(localStorage.getItem(localStorage.key(0))))
@@ -20,11 +23,14 @@ export function getProjectsFromLocalStorage() {
             projects.push(localStorage.getItem(localStorage.key(i)))
         }
     }
-
     return projects
 }
 
-export function addProjectItemsToLocalStorage() {
+export function addProjectItemsToLocalStorage(projectIndex) {
+    const projectKeyArray = getProjectsFromLocalStorage()
+    const projectKey = projectKeyArray[index]
+    const project = localStorage.getItem(localStorage.key(projectKey))
+
     const title = document.querySelector(".add-list-item-title-input")
     const desc = document.querySelector(".add-list-item-desc-input")
     const dueDate = document.querySelector(".add-list-item-due-date")
@@ -32,41 +38,21 @@ export function addProjectItemsToLocalStorage() {
     const priority = prioritySelector.options[prioritySelector.selectedIndex].text
 
     const listItem = new ListItem(title.value, desc.value, dueDate.value, priority)
+
+    let convertedProject = JSON.parse(project)
+    convertedProject.List.push(listItem)
+
+    localStorage.setItem(("project-" + projectIndex), JSON.stringify(convertedProject))
 }
 
 export function deleteAllLocalObjects() {
     localStorage.clear()
 }
 
-export function retrieveProject(index) {
-    const projectTitle = localStorage.getItem()
-}
-
-export function editProject(index, title, list) {
-    const project = ProjectsArray[index]
-    project.title = title
-    project.list = list
-}
-
-export function addList(list) {
-    ListArray.push(list)
-}
-
-export function addListItem(item) {
-    ListItemsArray.push(item)
-}
-
 class Project {
-    constructor (title, list) {
+    constructor (title, lists) {
         this.title = title
-        this.list = list
-    }
-}
-
-class List {
-    constructor (listName, listItems) {
-       this.listName = listName
-       this.listItems = listItems 
+        this.lists = lists
     }
 }
 
