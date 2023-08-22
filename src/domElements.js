@@ -86,8 +86,46 @@ const addListItemsForm = () => {
 
     const dueDate = document.createElement("input")
     dueDate.id = "add-list-item-due-date"
+    dueDate.type = "text"
 
-    
+    const prioritySelector = document.createElement("select")
+    prioritySelector.setAttribute("id", "priority-selector")
+
+    const priorityLow = document.createElement("option")
+    const priorityNormal = document.createElement("option")
+    const priorityHigh = document.createElement("option")
+
+    priorityLow.setAttribute("id", "low-priority")
+    priorityNormal.setAttribute("id", "normal-priority")
+    priorityHigh.setAttribute("id", "high-priority")
+
+    priorityLow.innerText = "Low"
+    priorityNormal.innerText = "Normal"
+    priorityHigh.innerText = "High"
+
+    prioritySelector.appendChild(priorityLow)
+    prioritySelector.appendChild(priorityNormal)
+    prioritySelector.appendChild(priorityHigh)
+
+    // const buttonDiv = document.createElement("div")
+    // buttonDiv.classList.add("priority-button-container")
+
+    // const priorityLow = document.createElement("button")
+    // const priorityNormal = document.createElement("button")
+    // const priorityHigh = document.createElement("button")
+
+    // priorityLow.setAttribute("id", "low-priority-button")
+    // priorityNormal.setAttribute("id", "normal-priority-button")
+    // priorityHigh.setAttribute("id", "high-priority-button")
+
+    listItemForm.appendChild(title)
+    listItemForm.appendChild(desc)
+    listItemForm.append(dueDate)
+    listItemForm.appendChild(buttonDiv)
+
+    buttonDiv.appendChild(priorityLow)
+    buttonDiv.appendChild(priorityNormal)
+    buttonDiv.appendChild(priorityHigh)
 }
 
 const setDefaultAddProjectPopUpVisibility = () => {

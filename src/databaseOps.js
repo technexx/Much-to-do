@@ -24,14 +24,14 @@ export function getProjectsFromLocalStorage() {
     return projects
 }
 
-export function addProjectItems() {
+export function addProjectItemsToLocalStorage() {
+    const title = document.querySelector(".add-list-item-title-input")
+    const desc = document.querySelector(".add-list-item-desc-input")
+    const dueDate = document.querySelector(".add-list-item-due-date")
+    const prioritySelector = document.querySelector(".priority-selector")
+    const priority = prioritySelector.options[prioritySelector.selectedIndex].text
 
-}
-
-export function deleteLocalObject(index) {
-    if (localStorage.key(index) !== undefined) {
-        localStorage.removeItem(localStorage.key(index))
-    }
+    const listItem = new ListItem(title.value, desc.value, dueDate.value, priority)
 }
 
 export function deleteAllLocalObjects() {
