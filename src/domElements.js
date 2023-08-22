@@ -7,11 +7,15 @@ export function createDomElements() {
     content.appendChild(projectHeader("Add a project!"))
     content.appendChild(addProjectButton())
     content.appendChild(addProjectPopUp())
+    content.appendChild(addListPopUp())
     content.appendChild(projectCardContainer())
     setDefaultAddProjectPopUpVisibility()
 
     const addProjectPopUpContent = document.querySelector(".add-project-popup")
     addProjectPopUpContent.appendChild(addProjectForm())
+
+    const addListPopUpConent = document.querySelector(".add-list-popup")
+    addListPopUpConent.appendChild(addListItemsForm())
 
     populateProjectCards()
 }
@@ -35,7 +39,12 @@ const addProjectButton = () => {
 const addProjectPopUp = () => {
     const div = document.createElement("div")
     div.classList.add("add-project-popup")
-    
+    return div
+}
+
+const addListPopUp = () => {
+    const div = document.createElement("div")
+    div.classList.add("add-list-popup")
     return div
 }
 
@@ -106,17 +115,6 @@ const addListItemsForm = () => {
     prioritySelector.appendChild(priorityLow)
     prioritySelector.appendChild(priorityNormal)
     prioritySelector.appendChild(priorityHigh)
-
-    // const buttonDiv = document.createElement("div")
-    // buttonDiv.classList.add("priority-button-container")
-
-    // const priorityLow = document.createElement("button")
-    // const priorityNormal = document.createElement("button")
-    // const priorityHigh = document.createElement("button")
-
-    // priorityLow.setAttribute("id", "low-priority-button")
-    // priorityNormal.setAttribute("id", "normal-priority-button")
-    // priorityHigh.setAttribute("id", "high-priority-button")
 
     listItemForm.appendChild(title)
     listItemForm.appendChild(desc)

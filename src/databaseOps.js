@@ -6,7 +6,6 @@ export function addProjectToLocalStorage() {
     deleteAllLocalObjects()
 
     const numberOfCurrentProject = getProjectsFromLocalStorage().length
-    // localStorage.setItem("project-array-item-" + (parseInt(numberOfCurrentProjects +1)))
 
     const content = document.querySelector("#add-project-title-input")
     const project = new Project(content.value, JSON.stringify(["hello", "goodbye"]))
@@ -39,6 +38,7 @@ export function addProjectItemsToLocalStorage(projectIndex) {
 
     const listItem = new ListItem(title.value, desc.value, dueDate.value, priority)
 
+    //Converts localStorage project to Project Object, and then pushes the new list into its array of lists.
     let convertedProject = JSON.parse(project)
     convertedProject.List.push(listItem)
 
