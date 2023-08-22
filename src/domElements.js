@@ -14,8 +14,8 @@ export function createDomElements() {
     const addProjectPopUpContent = document.querySelector(".add-project-popup")
     addProjectPopUpContent.appendChild(addProjectForm())
 
-    const addListPopUpConent = document.querySelector(".add-list-popup")
-    addListPopUpConent.appendChild(addListItemsForm())
+    const addListPopUpContent = document.querySelector(".add-list-popup")
+    addListPopUpContent.appendChild(addListItemsForm())
 
     populateProjectCards()
 }
@@ -119,11 +119,11 @@ const addListItemsForm = () => {
     listItemForm.appendChild(title)
     listItemForm.appendChild(desc)
     listItemForm.append(dueDate)
-    listItemForm.appendChild(buttonDiv)
+    listItemForm.appendChild(prioritySelector)
 
-    buttonDiv.appendChild(priorityLow)
-    buttonDiv.appendChild(priorityNormal)
-    buttonDiv.appendChild(priorityHigh)
+    //Todo: Submit button.
+
+    return listItemForm
 }
 
 const setDefaultAddProjectPopUpVisibility = () => {
@@ -145,11 +145,11 @@ export function populateProjectCards() {
         const projectDiv = document.createElement("div")
         projectDiv.classList.add("projects")
 
-        const addListItemButton = document.createElement("button")
-        addListItemButton.setAttribute("id", "add-list-item")
-        addListItemButton.innerHTML = "<img src='../src/images/pencil.svg'/>"
-        addListItemButton.style.width = "30px"
-        addListItemButton.style.backgroundColor = "white"        
+        const addListButton = document.createElement("button")
+        addListButton.setAttribute("id", "add-list-button")
+        addListButton.innerHTML = "<img src='../src/images/pencil.svg'/>"
+        addListButton.style.width = "30px"
+        addListButton.style.backgroundColor = "white"        
 
         const titleDiv = document.createElement("div")
         const listDiv = document.createElement("div")
@@ -176,7 +176,7 @@ export function populateProjectCards() {
 
         projectDiv.appendChild(titleDiv)
         projectDiv.appendChild(listDiv)
-        projectDiv.appendChild(addListItemButton)
+        projectDiv.appendChild(addListButton)
 
         projectContainer.appendChild(projectDiv)
     }
