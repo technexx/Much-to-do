@@ -30,9 +30,9 @@ export function addProjectItemsToLocalStorage(projectIndex) {
     const projectKey = projectKeyArray[index]
     const project = localStorage.getItem(localStorage.key(projectKey))
 
-    const title = document.querySelector(".add-list-item-title-input")
-    const desc = document.querySelector(".add-list-item-desc-input")
-    const dueDate = document.querySelector(".add-list-item-due-date")
+    const title = document.querySelector(".add-list-title-input")
+    const desc = document.querySelector(".add-list-desc-input")
+    const dueDate = document.querySelector(".add-list-due-date")
     const prioritySelector = document.querySelector(".priority-selector")
     const priority = prioritySelector.options[prioritySelector.selectedIndex].text
 

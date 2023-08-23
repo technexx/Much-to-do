@@ -75,10 +75,10 @@ const addProjectForm = () => {
 
 const addListItemsForm = () => {
     const listItemForm = document.createElement("form")
-    listItemForm.setAttribute("id", "add-list-items-form")
+    listItemForm.setAttribute("id", "add-list-form")
 
     const title = document.createElement("input")
-    title.id = "add-list-item-title-input"
+    title.id = "add-list-title-input"
     title.type = "text"
     title.minLength = "1"
     title.maxLength = "20"
@@ -86,7 +86,7 @@ const addListItemsForm = () => {
     title.required = "true"
 
     const desc = document.createElement("input")
-    desc.id = "add-list-item-desc-input"
+    desc.id = "add-list-desc-input"
     desc.type = "text"
     desc.minLength = "1"
     desc.maxLength = "40"
@@ -94,7 +94,7 @@ const addListItemsForm = () => {
     desc.required = "true"
 
     const dueDate = document.createElement("input")
-    dueDate.id = "add-list-item-due-date"
+    dueDate.id = "add-list-due-date"
     dueDate.type = "text"
 
     const prioritySelector = document.createElement("select")
@@ -115,6 +115,12 @@ const addListItemsForm = () => {
     prioritySelector.appendChild(priorityLow)
     prioritySelector.appendChild(priorityNormal)
     prioritySelector.appendChild(priorityHigh)
+
+    const submitButton = document.createElement("button")
+    submitButton.setAttribute("id", "add-list-submit-button")
+    submitButton.setAttribute("form", "add-list-form")
+    submitButton.type = "submit"
+    submitButton.innerText = "Submit"
 
     listItemForm.appendChild(title)
     listItemForm.appendChild(desc)

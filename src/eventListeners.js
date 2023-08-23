@@ -24,7 +24,7 @@ const addProjectButtonListener = () => {
 }
 
 const addListItemButtonListener = () => {
-    const button = document.querySelector(".add-list-button")
+    const button = document.querySelector("#add-list-button")
     const popUp = document.querySelector(".add-list-popup")
 
     button.addEventListener("click", () => {
