@@ -90,7 +90,7 @@ const addListItemsForm = () => {
     desc.type = "text"
     desc.minLength = "1"
     desc.maxLength = "40"
-    desc.placeholder = "Title"
+    desc.placeholder = "Description"
     desc.required = "true"
 
     const dueDate = document.createElement("input")
@@ -124,8 +124,9 @@ const addListItemsForm = () => {
 
     listItemForm.appendChild(title)
     listItemForm.appendChild(desc)
-    listItemForm.append(dueDate)
+    listItemForm.appendChild(dueDate)
     listItemForm.appendChild(prioritySelector)
+    listItemForm.appendChild(submitButton)
 
     //Todo: Submit button.
 

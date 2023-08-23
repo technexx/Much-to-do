@@ -1,6 +1,5 @@
 import { addProjectToLocalStorage } from "./databaseOps"
-import { addList } from "./databaseOps"
-import { addListItem } from "./databaseOps"
+import { addProjectItemsToLocalStorage } from "./databaseOps"
 import { clearProjectCards } from "./domElements"
 import { populateProjectCards } from "./domElements"
 
@@ -38,16 +37,25 @@ const addListItemButtonListener = () => {
 
 //Form submission reloads page, thus skipping console logs.
 const addProjectSubmitButtonListener = () => {
-    const button = document.querySelector("#add-project-submit-button")
+    const button = document.querySelector("#add-list-button")
 
     button.addEventListener("click", (event) => {
         event.preventDefault()
-        toggleAddProjectPopUpVisibility(false)
+        // toggleAddProjectPopUpVisibility(false)
 
         addProjectToLocalStorage()
 
         clearProjectCards()
         populateProjectCards()
+    })
+}
+
+const addListItemSubmitButtonListener = () => {
+    const button = document.querySelector("#add-project-submit-button")
+
+    button.addEventListener("click", (event) => {
+        event.preventDefault()
+        addProjectItemsToLocalStorage()
     })
 }
 

@@ -41,8 +41,15 @@ export function addProjectItemsToLocalStorage(projectIndex) {
     //Converts localStorage project to Project Object, and then pushes the new list into its array of lists.
     let convertedProject = JSON.parse(project)
     convertedProject.List.push(listItem)
+    
+    console.log(projectKeyArray)
+    console.log(projectKey)
+    console.log(project)
+    console.log(convertedProject)
 
     localStorage.setItem(("project-" + projectIndex), JSON.stringify(convertedProject))
+
+    console.log(localStorage)
 }
 
 export function deleteAllLocalObjects() {
