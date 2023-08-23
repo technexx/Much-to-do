@@ -7,6 +7,7 @@ export function setEventListeners() {
     addProjectButtonListener()
     addProjectSubmitButtonListener()
     addListItemButtonListener()
+    addListItemSubmitButtonListener()
 }
 
 const addProjectButtonListener = () => {
@@ -37,7 +38,7 @@ const addListItemButtonListener = () => {
 
 //Form submission reloads page, thus skipping console logs.
 const addProjectSubmitButtonListener = () => {
-    const button = document.querySelector("#add-list-button")
+    const button = document.querySelector("#add-list-submit-button")
 
     button.addEventListener("click", (event) => {
         event.preventDefault()

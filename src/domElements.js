@@ -128,8 +128,6 @@ const addListItemsForm = () => {
     listItemForm.appendChild(prioritySelector)
     listItemForm.appendChild(submitButton)
 
-    //Todo: Submit button.
-
     return listItemForm
 }
 
@@ -168,11 +166,9 @@ export function populateProjectCards() {
 
         titleDiv.innerText = project.title
 
-        const projectItems = project.list
-    
+        const projectItems = project.lists
         const projectsCulled = projectItems.replace("[", "").replace("]", "").replaceAll("\"", "")
         const splitProjects = projectsCulled.split(",")
-        console.log(splitProjects)
 
         for (let j=0; j<splitProjects.length; j++) {
             const itemDiv = document.createElement("div")
