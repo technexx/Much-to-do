@@ -42,8 +42,6 @@ const addProjectSubmitButtonListener = () => {
 
     button.addEventListener("click", (event) => {
         event.preventDefault()
-        // toggleAddProjectPopUpVisibility(false)
-
         addProjectToLocalStorage()
 
         clearProjectCards()
@@ -52,11 +50,13 @@ const addProjectSubmitButtonListener = () => {
 }
 
 const addListItemSubmitButtonListener = () => {
-    const button = document.querySelector("#add-project-submit-button")
+    const button = document.querySelectorAll("#add-project-submit-button")
 
-    button.addEventListener("click", (event) => {
-        event.preventDefault()
-        addProjectItemsToLocalStorage()
+    button.forEach(function callback(value, index) {
+        button[index].addEventListener("click", (event) => {
+            event.preventDefault()
+            addProjectItemsToLocalStorage(index)
+        })
     })
 }
 
