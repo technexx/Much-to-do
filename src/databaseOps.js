@@ -5,7 +5,10 @@ export const ListItemsArray = []
 export function testPopulation() {
     deleteAllLocalObjects()
 
-    const project = new Project("Test Project", [new ListItem("title", "desc", "now", "normal", false)])
+    const itemOne = new ListItem("first title", "first desc", "due now", "normal", false)
+    const itemTwo = new ListItem("second title", "second desc", "due later", "low", false)
+
+    const project = new Project("Test Project", [itemOne, itemTwo])
     localStorage.setItem(("project-" + 1), JSON.stringify(project))
     console.log(project)
 }

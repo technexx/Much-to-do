@@ -164,16 +164,12 @@ export function populateProjectCards() {
         const project = JSON.parse(allProjects[i])
 
         titleDiv.innerText = project.title
+        projectDiv.appendChild(titleDiv)
 
         const projectItems = project.lists
-        console.log(projectItems)
-        console.log(projectItems[0].title)
-        // const projectsCulled = projectItems.replace("[", "").replace("]", "").replaceAll("\"", "")
-        // const splitProjects = projectsCulled.split(",")
-
         for (let j=0; j<projectItems.length; j++) {
             const itemDiv = document.createElement("div")
-            itemDiv.setAttribute("id", "project-list-item")
+            itemDiv.classList.add("project-item-container")
 
             const title = document.createElement("p")
             const desc = document.createElement("p")
@@ -196,7 +192,6 @@ export function populateProjectCards() {
             projectDiv.appendChild(itemDiv)
         }
 
-        projectDiv.appendChild(titleDiv)
         projectDiv.appendChild(addListButton)
 
         projectContainer.appendChild(projectDiv)
