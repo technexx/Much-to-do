@@ -165,8 +165,9 @@ export function populateProjectCards() {
 
         titleDiv.innerText = project.title
 
-        // const projectItems = project.lists
-    
+        const projectItems = project.lists
+        console.log(projectItems)
+        console.log(projectItems.length)
         // const projectsCulled = projectItems.replace("[", "").replace("]", "").replaceAll("\"", "")
         // const splitProjects = projectsCulled.split(",")
 
