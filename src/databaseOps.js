@@ -30,16 +30,18 @@ export function addProjectItemsToLocalStorage(index) {
     const projectKey = projectKeyArray[index]
     const project = localStorage.getItem(localStorage.key(projectKey))
 
-    const title = document.querySelector(".add-list-title-input")
-    const desc = document.querySelector(".add-list-desc-input")
-    const dueDate = document.querySelector(".add-list-due-date")
-    const prioritySelector = document.querySelector(".priority-selector")
+    const title = document.querySelector("#add-list-title-input")
+    const desc = document.querySelector("#add-list-desc-input")
+    const dueDate = document.querySelector("#add-list-due-date")
+    const prioritySelector = document.querySelector("#priority-selector")
     const priority = prioritySelector.options[prioritySelector.selectedIndex].text
 
-    const listItem = new ListItem(title.value, desc.value, dueDate.value, priority)
+    const listItem = new ListItem(title.value, desc.value, dueDate.value, priority, false)
 
     //Converts localStorage project to Project Object, and then pushes the new list into its array of lists.
     let convertedProject = JSON.parse(project)
+    console.log("project is " + project)
+    console.log("converted project is " + convertedProject)
     convertedProject.List.push(listItem)
     
     console.log(projectKeyArray)

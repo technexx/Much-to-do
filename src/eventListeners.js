@@ -46,9 +46,12 @@ const addProjectSubmitButtonListener = () => {
 
         clearProjectCards()
         populateProjectCards()
+
+        console.log("project submit clicked")
     })
 }
 
+//Todo: Gets imported/instantiated and thus called on script launch.
 const addListItemSubmitButtonListener = () => {
     const button = document.querySelectorAll("#add-project-submit-button")
 
@@ -56,6 +59,8 @@ const addListItemSubmitButtonListener = () => {
         button[index].addEventListener("click", (event) => {
             event.preventDefault()
             addProjectItemsToLocalStorage(index)
+
+            console.log("item submit clicked")
         })
     })
 }
