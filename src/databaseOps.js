@@ -2,17 +2,20 @@ export const ProjectsArray = []
 export const ListArray = []
 export const ListItemsArray = []
 
-export function addProjectToLocalStorage() {
+export function testPopulation() {
     deleteAllLocalObjects()
 
+    const project = new Project("Test Project", new ListItem("title", "desc", "now", "normal", false))
+    localStorage.setItem(("project-" + 1), JSON.stringify(project))
+    console.log(project)
+}
+
+export function addProjectToLocalStorage() {
     const numberOfCurrentProject = getProjectsFromLocalStorage().length
 
     const content = document.querySelector("#add-project-title-input")
     const project = new Project(content.value, JSON.stringify([""]))
     localStorage.setItem(("project-" + numberOfCurrentProject), JSON.stringify(project))
-    
-    console.log(localStorage)
-    console.log(JSON.parse(localStorage.getItem(localStorage.key(0))))
 }
 
 export function getProjectsFromLocalStorage() {
@@ -40,18 +43,9 @@ export function addProjectItemsToLocalStorage(index) {
 
     //Converts localStorage project to Project Object, and then pushes the new list into its array of lists.
     let convertedProject = JSON.parse(project)
-    console.log("project is " + project)
-    console.log("converted project is " + convertedProject)
     convertedProject.List.push(listItem)
-    
-    console.log(projectKeyArray)
-    console.log(projectKey)
-    console.log(project)
-    console.log(convertedProject)
 
     localStorage.setItem(("project-" + projectIndex), JSON.stringify(convertedProject))
-
-    console.log(localStorage)
 }
 
 export function deleteAllLocalObjects() {

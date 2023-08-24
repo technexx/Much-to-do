@@ -162,20 +162,20 @@ export function populateProjectCards() {
         listDiv.classList.add("project-item-array")
 
         const project = JSON.parse(allProjects[i])
-        console.log(project)
 
         titleDiv.innerText = project.title
 
-        const projectItems = project.lists
-        const projectsCulled = projectItems.replace("[", "").replace("]", "").replaceAll("\"", "")
-        const splitProjects = projectsCulled.split(",")
+        // const projectItems = project.lists
+    
+        // const projectsCulled = projectItems.replace("[", "").replace("]", "").replaceAll("\"", "")
+        // const splitProjects = projectsCulled.split(",")
 
-        for (let j=0; j<splitProjects.length; j++) {
-            const itemDiv = document.createElement("div")
-            itemDiv.setAttribute("id", "project-list-item")
-            itemDiv.innerText = splitProjects[j]
-            listDiv.appendChild(itemDiv)
-        }
+        // for (let j=0; j<splitProjects.length; j++) {
+        //     const itemDiv = document.createElement("div")
+        //     itemDiv.setAttribute("id", "project-list-item")
+        //     itemDiv.innerText = splitProjects[j]
+        //     listDiv.appendChild(itemDiv)
+        // }
 
         projectDiv.appendChild(titleDiv)
         projectDiv.appendChild(listDiv)
@@ -190,5 +190,4 @@ export function clearProjectCards() {
     projects.forEach(project => {
         project.remove()
     })
-    // console.log(projects)
 }

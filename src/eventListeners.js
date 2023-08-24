@@ -27,13 +27,15 @@ const addListItemButtonListener = () => {
     const button = document.querySelector("#add-list-button")
     const popUp = document.querySelector(".add-list-popup")
 
-    button.addEventListener("click", () => {
-        if (popUp.getAttribute("id") === "invisible") {
-            toggleAddProjectPopUpVisibility(true)
-        } else {
-            toggleAddProjectPopUpVisibility(false)
-        }
-    })
+    if (button !== null) {
+        button.addEventListener("click", () => {
+            if (popUp.getAttribute("id") === "invisible") {
+                toggleAddProjectPopUpVisibility(true)
+            } else {
+                toggleAddProjectPopUpVisibility(false)
+            }
+        })
+    }
 }
 
 //Form submission reloads page, thus skipping console logs.
@@ -46,8 +48,6 @@ const addProjectSubmitButtonListener = () => {
 
         clearProjectCards()
         populateProjectCards()
-
-        console.log("project submit clicked")
     })
 }
 
@@ -59,8 +59,6 @@ const addListItemSubmitButtonListener = () => {
         button[index].addEventListener("click", (event) => {
             event.preventDefault()
             addProjectItemsToLocalStorage(index)
-
-            console.log("item submit clicked")
         })
     })
 }
