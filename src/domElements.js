@@ -167,19 +167,36 @@ export function populateProjectCards() {
 
         const projectItems = project.lists
         console.log(projectItems)
-        console.log(projectItems.length)
+        console.log(projectItems[0].title)
         // const projectsCulled = projectItems.replace("[", "").replace("]", "").replaceAll("\"", "")
         // const splitProjects = projectsCulled.split(",")
 
-        // for (let j=0; j<splitProjects.length; j++) {
-        //     const itemDiv = document.createElement("div")
-        //     itemDiv.setAttribute("id", "project-list-item")
-        //     itemDiv.innerText = splitProjects[j]
-        //     listDiv.appendChild(itemDiv)
-        // }
+        for (let j=0; j<projectItems.length; j++) {
+            const itemDiv = document.createElement("div")
+            itemDiv.setAttribute("id", "project-list-item")
+
+            const title = document.createElement("p")
+            const desc = document.createElement("p")
+            const dueDate = document.createElement("p")
+            const priority = document.createElement("p")
+            const isCompleted = document.createElement("p")
+
+            title.innerText = projectItems[j].title
+            desc.innerText = projectItems[j].description
+            dueDate.innerText = projectItems[j].dueDate
+            priority.innerText = projectItems[j].priority
+            isCompleted.innerText = projectItems[j].isCompleted
+
+            itemDiv.appendChild(title)
+            itemDiv.appendChild(desc)
+            itemDiv.appendChild(dueDate)
+            itemDiv.appendChild(priority)
+            itemDiv.appendChild(isCompleted)
+
+            projectDiv.appendChild(itemDiv)
+        }
 
         projectDiv.appendChild(titleDiv)
-        projectDiv.appendChild(listDiv)
         projectDiv.appendChild(addListButton)
 
         projectContainer.appendChild(projectDiv)
