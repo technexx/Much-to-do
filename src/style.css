@@ -62,13 +62,12 @@
 
 .project-item-container {
     font-size: 25px;
-    /* overflow: hidden;
-    text-overflow: ellipsis;
-    overflow-wrap: break-word; */
     border: 2px solid yellow;
-    display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
+}
+
+.project-item-list {
+    border: 2px solid green;
+    font-size: 20px;
 }
 
 /**Setting relative position allows other elements, e.g. our add-list-item, to be set via absolute*/

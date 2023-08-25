@@ -9,7 +9,6 @@ export function createDomElements() {
     content.appendChild(addProjectPopUp())
     content.appendChild(addListPopUp())
     content.appendChild(projectCardContainer())
-    setDefaultAddProjectPopUpVisibility()
 
     const addProjectPopUpContent = document.querySelector(".add-project-popup")
     addProjectPopUpContent.appendChild(addProjectForm())
@@ -131,11 +130,6 @@ const addListItemsForm = () => {
     return listItemForm
 }
 
-const setDefaultAddProjectPopUpVisibility = () => {
-    const popup = document.querySelector(".add-project-popup")
-    popup.setAttribute("id", "invisible")
-}
-
 const projectCardContainer = () => {
     const div = document.createElement("div")
     div.classList.add("project-container")
@@ -172,30 +166,37 @@ export function populateProjectCards() {
             itemDiv.classList.add("project-item-container")
 
             const title = document.createElement("p")
-            const desc = document.createElement("p")
-            const dueDate = document.createElement("p")
-            const priority = document.createElement("p")
-            const isCompleted = document.createElement("p")
-
             title.innerText = projectItems[j].title
-            desc.innerText = projectItems[j].description
-            dueDate.innerText = projectItems[j].dueDate
-            priority.innerText = projectItems[j].priority
-            isCompleted.innerText = projectItems[j].isCompleted
-
             itemDiv.appendChild(title)
-            itemDiv.appendChild(desc)
-            itemDiv.appendChild(dueDate)
-            itemDiv.appendChild(priority)
-            itemDiv.appendChild(isCompleted)
-
             projectDiv.appendChild(itemDiv)
         }
 
         projectDiv.appendChild(addListButton)
-
         projectContainer.appendChild(projectDiv)
     }
+}
+
+const populateProjectListOfItems = () => {
+    const itemDiv = document.createElement("div")
+    itemDiv.classList.add("project-item-list")
+
+    const title = document.createElement("p")
+    const desc = document.createElement("p")
+    const dueDate = document.createElement("p")
+    const priority = document.createElement("p")
+    const isCompleted = document.createElement("p")
+
+    title.innerText = projectItems[j].title
+    desc.innerText = projectItems[j].description
+    dueDate.innerText = projectItems[j].dueDate
+    priority.innerText = projectItems[j].priority
+    isCompleted.innerText = projectItems[j].isCompleted
+
+    itemDiv.appendChild(title)
+    itemDiv.appendChild(desc)
+    itemDiv.appendChild(dueDate)
+    itemDiv.appendChild(priority)
+    itemDiv.appendChild(isCompleted)
 }
 
 export function clearProjectCards() {

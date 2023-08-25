@@ -29,10 +29,11 @@ const addListItemButtonListener = () => {
 
     if (button !== null) {
         button.addEventListener("click", () => {
+            console.log("popup is " + popUp.getAttribute("id"))
             if (popUp.getAttribute("id") === "invisible") {
-                toggleAddProjectPopUpVisibility(true)
+                toggleAddListPopUpVisibility(true)
             } else {
-                toggleAddProjectPopUpVisibility(false)
+                toggleAddListPopUpVisibility(false)
             }
         })
     }
@@ -51,7 +52,6 @@ const addProjectSubmitButtonListener = () => {
     })
 }
 
-//Todo: Gets imported/instantiated and thus called on script launch.
 const addListItemSubmitButtonListener = () => {
     const button = document.querySelectorAll("#add-project-submit-button")
 
@@ -59,6 +59,7 @@ const addListItemSubmitButtonListener = () => {
         button[index].addEventListener("click", (event) => {
             event.preventDefault()
             addProjectItemsToLocalStorage(index)
+            toggleAddListPopUpVisibility(false)
         })
     })
 }
