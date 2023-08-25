@@ -33,6 +33,10 @@
     justify-content: center;
 }
 
+.add-list-popup {
+    display: none;
+}
+
 #add-project-form {
     display: flex;
     flex-direction: column;
