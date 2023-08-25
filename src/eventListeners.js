@@ -15,10 +15,10 @@ const addProjectButtonListener = () => {
     const popUp = document.querySelector(".add-project-popup")
 
     button.addEventListener("click", () => {
-        if (popUp.getAttribute("id") === "invisible") {
-            toggleAddProjectPopUpVisibility(true)
-        } else {
+        if (popUp.getAttribute("id") === "visible") {
             toggleAddProjectPopUpVisibility(false)
+        } else {
+            toggleAddProjectPopUpVisibility(true)
         }
     })
 }
@@ -30,10 +30,10 @@ const addListItemButtonListener = () => {
     if (button !== null) {
         button.addEventListener("click", () => {
             console.log("popup is " + popUp.getAttribute("id"))
-            if (popUp.getAttribute("id") === "invisible") {
-                toggleAddListPopUpVisibility(true)
-            } else {
+            if (popUp.getAttribute("id") === "visible") {
                 toggleAddListPopUpVisibility(false)
+            } else {
+                toggleAddListPopUpVisibility(true)
             }
         })
     }
