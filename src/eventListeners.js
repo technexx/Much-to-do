@@ -8,18 +8,25 @@ export function setEventListeners() {
     addProjectSubmitButtonListener()
     addListItemButtonListener()
     addListItemSubmitButtonListener()
+    documentListener()
+}
+
+const documentListener = () => {
+    document.addEventListener("click", (e) => {
+        if (!e.target.closest(".add-project-modal-content")) {
+            window.open("#", "_parent")
+        }
+})
 }
 
 const addProjectButtonListener = () => {
     const button = document.querySelector("#add-project-button")
-    const popUp = document.querySelector(".add-project-popup")
 
     button.addEventListener("click", () => {
-        if (popUp.getAttribute("id") === "visible") {
-            toggleAddProjectPopUpVisibility(false)
-        } else {
-            toggleAddProjectPopUpVisibility(true)
-        }
+        console.log("add project clicked")
+        console.log(document.querySelector("#add-project-popup"))
+
+        window.open("#add-project-popup")
     })
 }
 
@@ -29,12 +36,7 @@ const addListItemButtonListener = () => {
 
     if (button !== null) {
         button.addEventListener("click", () => {
-            console.log("popup is " + popUp.getAttribute("id"))
-            if (popUp.getAttribute("id") === "visible") {
-                toggleAddListPopUpVisibility(false)
-            } else {
-                toggleAddListPopUpVisibility(true)
-            }
+
         })
     }
 }
@@ -59,29 +61,6 @@ const addListItemSubmitButtonListener = () => {
         button[index].addEventListener("click", (event) => {
             event.preventDefault()
             addProjectItemsToLocalStorage(index)
-            toggleAddListPopUpVisibility(false)
         })
     })
-}
-
-const toggleAddProjectPopUpVisibility = (makeVisible) => {
-    const popUp = document.querySelector(".add-project-popup")
-    if (makeVisible) {
-        popUp.setAttribute("id", "visible")
-        popUp.style.display = "flex"
-    } else {
-        popUp.setAttribute("id", "invisible")
-        popUp.style.display = "none"
-    }
-}
-
-const toggleAddListPopUpVisibility = (makeVisible) => {
-    const popUp = document.querySelector(".add-list-popup")
-    if (makeVisible) {
-        popUp.setAttribute("id", "visible")
-        popUp.style.display = "flex"
-    } else {
-        popUp.setAttribute("id", "invisible")
-        popUp.style.display = "none"
-    }
 }

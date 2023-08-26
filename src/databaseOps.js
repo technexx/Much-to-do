@@ -45,9 +45,10 @@ export function addProjectItemsToLocalStorage(index) {
     const listItem = new ListItem(title.value, desc.value, dueDate.value, priority, false)
 
     //Converts localStorage project to Project Object, and then pushes the new list into its array of lists.
-    let convertedProject = JSON.parse(project)
-    convertedProject.List.push(listItem)
+    // let convertedProject = JSON.parse(project)
+    // convertedProject.List.push(listItem)
 
+    //Todo: Project needs to be edited, not added as a new one.
     localStorage.setItem(("project-" + projectIndex), JSON.stringify(convertedProject))
 }
 

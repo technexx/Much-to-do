@@ -6,15 +6,9 @@ const content = document.querySelector(".content")
 export function createDomElements() {
     content.appendChild(projectHeader("Add a project!"))
     content.appendChild(addProjectButton())
-    content.appendChild(addProjectPopUp())
+    content.appendChild(addProjectModal())
     content.appendChild(addListPopUp())
     content.appendChild(projectCardContainer())
-
-    const addProjectPopUpContent = document.querySelector(".add-project-popup")
-    addProjectPopUpContent.appendChild(addProjectForm())
-
-    const addListPopUpContent = document.querySelector(".add-list-popup")
-    addListPopUpContent.appendChild(addListItemsForm())
 
     populateProjectCards()
 }
@@ -35,15 +29,24 @@ const addProjectButton = () => {
     return button
 }
 
-const addProjectPopUp = () => {
-    const div = document.createElement("div")
-    div.classList.add("add-project-popup")
-    return div
+const addProjectModal = () => {
+    const modalDiv = document.createElement("div")
+    modalDiv.classList.add("add-project-modal")
+    modalDiv.setAttribute("id", "add-project-popup")
+
+    const contentDiv = document.createElement("div")
+    contentDiv.classList.add("add-project-modal-content")
+
+    modalDiv.appendChild(contentDiv)
+    contentDiv.appendChild(addProjectForm())
+    return modalDiv
 }
 
 const addListPopUp = () => {
     const div = document.createElement("div")
     div.classList.add("add-list-popup")
+
+    div.appendChild(addListItemsForm())
     return div
 }
 
