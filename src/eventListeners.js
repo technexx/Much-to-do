@@ -4,7 +4,7 @@ import { clearProjectCards } from "./domElements"
 import { populateProjectCards } from "./domElements"
 
 export function setEventListeners() {
-    addProjectButtonListener()
+    // addProjectButtonListener()
     addProjectSubmitButtonListener()
     addListItemButtonListener()
     addListItemSubmitButtonListener()
@@ -13,22 +13,26 @@ export function setEventListeners() {
 
 const documentListener = () => {
     document.addEventListener("click", (e) => {
-        if (!e.target.closest(".add-project-modal-content")) {
+        if (e.target.closest("#add-project-button")) {
+            window.open("#add-project-popup", "_parent")
+        } else if (!e.target.closest(".add-project-modal-content")) {
+            console.log("clicked")
             window.open("#", "_parent")
         }
 })
 }
 
-const addProjectButtonListener = () => {
-    const button = document.querySelector("#add-project-button")
+//Todo: May be that parent context is wrong.
+// const addProjectButtonListener = () => {
+//     const button = document.querySelector("#add-project-button")
 
-    button.addEventListener("click", () => {
-        console.log("add project clicked")
-        console.log(document.querySelector("#add-project-popup"))
+//     button.addEventListener("click", () => {
+//         console.log("add project clicked")
+//         console.log(document.querySelector("#add-project-popup"))
 
-        window.open("#add-project-popup")
-    })
-}
+//         window.open("#add-project-popup", "_parent")
+//     })
+// }
 
 const addListItemButtonListener = () => {
     const button = document.querySelector("#add-list-button")
