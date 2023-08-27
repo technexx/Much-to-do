@@ -4,6 +4,6 @@ import { compareAsc, format } from 'date-fns'
 import './style.css';
 import { testPopulation } from "./databaseOps.js";
 
-testPopulation()
+// testPopulation()
 createDomElements()
 setEventListeners()

@@ -57,7 +57,7 @@ const addProjectForm = () => {
     const title = document.createElement("input")
     title.id = "add-project-title-input"
     title.type = "text"
-    title.minLength = "1"
+    title.minLength = "3"
     title.maxLength = "40"
     title.placeholder = "Title"
     title.required = "true"
@@ -163,19 +163,22 @@ export function populateProjectCards() {
         titleDiv.innerText = project.title
         projectDiv.appendChild(titleDiv)
 
-        const projectItems = project.lists
-        for (let j=0; j<projectItems.length; j++) {
-            const itemDiv = document.createElement("div")
-            itemDiv.classList.add("project-item-container")
-
-            const title = document.createElement("p")
-            title.innerText = projectItems[j].title
-            itemDiv.appendChild(title)
-            projectDiv.appendChild(itemDiv)
+        if (project.lists !== undefined) {
+            const projectItems = project.lists
+        
+            for (let j=0; j<projectItems.length; j++) {
+                const itemDiv = document.createElement("div")
+                itemDiv.classList.add("project-item-container")
+    
+                const title = document.createElement("p")
+                title.innerText = projectItems[j].title
+                itemDiv.appendChild(title)
+                projectDiv.appendChild(itemDiv)
+            }
+    
+            projectDiv.appendChild(addListButton)
+            projectContainer.appendChild(projectDiv)
         }
-
-        projectDiv.appendChild(addListButton)
-        projectContainer.appendChild(projectDiv)
     }
 }
 
@@ -207,4 +210,8 @@ export function clearProjectCards() {
     projects.forEach(project => {
         project.remove()
     })
+}
+
+export function dismissPopup() {
+    window.location = "#" 
 }

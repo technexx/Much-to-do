@@ -2,6 +2,7 @@ import { addProjectToLocalStorage } from "./databaseOps"
 import { addProjectItemsToLocalStorage } from "./databaseOps"
 import { clearProjectCards } from "./domElements"
 import { populateProjectCards } from "./domElements"
+import { dismissPopup } from "./domElements"
 
 export function setEventListeners() {
     // addProjectButtonListener()
@@ -36,6 +37,7 @@ const addListItemButtonListener = () => {
 const addProjectSubmitButtonListener = () => {
     const button = document.querySelector("#add-project-submit-button")
 
+    //Todo: Blank list on add (if array is ampty)
     button.addEventListener("click", (event) => {
         console.log("add project clicked")
 
@@ -45,6 +47,9 @@ const addProjectSubmitButtonListener = () => {
         clearProjectCards()
         populateProjectCards()
 
+        dismissPopup()
+
+        console.log(localStorage)
     })
 }
 

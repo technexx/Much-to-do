@@ -17,7 +17,7 @@ export function addProjectToLocalStorage() {
     const numberOfCurrentProject = getProjectsFromLocalStorage().length
 
     const content = document.querySelector("#add-project-title-input")
-    const project = new Project(content.value, JSON.stringify([""]))
+    const project = new Project(content.value, "")
     localStorage.setItem(("project-" + numberOfCurrentProject), JSON.stringify(project))
 }
 
