@@ -40,7 +40,6 @@
     width: 400px;
     height: 400px;
     padding: 1em 2em;
-    border-radius: 10px;
     border: 3px solid green;
 }
 
@@ -92,7 +91,6 @@
 
 /**Setting relative position allows other elements, e.g. our add-list-item, to be set via absolute*/
 .projects {
-    position: relative;
     display: flex;
     flex-direction: column;
     border: 2px solid blue;
