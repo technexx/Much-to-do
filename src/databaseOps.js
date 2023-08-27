@@ -49,7 +49,7 @@ export function addProjectItemsToLocalStorage(index) {
     // convertedProject.List.push(listItem)
 
     //Todo: Project needs to be edited, not added as a new one.
-    localStorage.setItem(("project-" + projectIndex), JSON.stringify(convertedProject))
+    // localStorage.setItem(("project-" + projectIndex), JSON.stringify(convertedProject))
 }
 
 export function deleteAllLocalObjects() {

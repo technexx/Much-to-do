@@ -16,23 +16,10 @@ const documentListener = () => {
         if (e.target.closest("#add-project-button")) {
             window.open("#add-project-popup", "_parent")
         } else if (!e.target.closest(".add-project-modal-content")) {
-            console.log("clicked")
             window.open("#", "_parent")
         }
 })
 }
-
-//Todo: May be that parent context is wrong.
-// const addProjectButtonListener = () => {
-//     const button = document.querySelector("#add-project-button")
-
-//     button.addEventListener("click", () => {
-//         console.log("add project clicked")
-//         console.log(document.querySelector("#add-project-popup"))
-
-//         window.open("#add-project-popup", "_parent")
-//     })
-// }
 
 const addListItemButtonListener = () => {
     const button = document.querySelector("#add-list-button")
@@ -47,19 +34,22 @@ const addListItemButtonListener = () => {
 
 //Form submission reloads page, thus skipping console logs.
 const addProjectSubmitButtonListener = () => {
-    const button = document.querySelector("#add-list-submit-button")
+    const button = document.querySelector("#add-project-submit-button")
 
     button.addEventListener("click", (event) => {
+        console.log("add project clicked")
+
         event.preventDefault()
         addProjectToLocalStorage()
 
         clearProjectCards()
         populateProjectCards()
+
     })
 }
 
 const addListItemSubmitButtonListener = () => {
-    const button = document.querySelectorAll("#add-project-submit-button")
+    const button = document.querySelectorAll("#add-list-submit-button")
 
     button.forEach(function callback(value, index) {
         button[index].addEventListener("click", (event) => {
