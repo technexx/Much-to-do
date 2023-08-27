@@ -150,8 +150,8 @@ export function populateProjectCards() {
         const addListButton = document.createElement("button")
         addListButton.setAttribute("id", "add-list-button")
         addListButton.innerHTML = "<img src='../src/images/pencil.svg'/>"
-        addListButton.style.width = "30px"
-        addListButton.style.backgroundColor = "white"        
+        // addListButton.style.width = "30px"
+        // addListButton.style.backgroundColor = "white"        
 
         const titleDiv = document.createElement("div")
         const listDiv = document.createElement("div")
