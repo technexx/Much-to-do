@@ -102,6 +102,25 @@
     margin-bottom: 10px;
 }
 
+/*Height set to 100% so that we can set auto top-margin to align Submit button to bottom.*/
+#add-list-form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:10px
+}
+
+#add-list-form > * {
+    font-size: 30px;
+    width: 80%;
+}
+
+#add-list-form > button {
+    margin-top: auto
+}
+
 /*Absolute position only works relative to parent if parent position also set*/
 #add-list-button {
     width: 30px;
