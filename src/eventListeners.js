@@ -8,21 +8,25 @@ import { addListItemsForm } from "./domElements"
 
 export function setEventListeners() {
     // addProjectButtonListener()
-    addProjectSubmitButtonListener()
     addListItemButtonListener()
-    addListItemSubmitButtonListener()
     documentListener()
 }
 
 const documentListener = () => {
-    const modal = document.querySelector(".modal")
+    const modalContent = document.querySelector(".modal-content")
 
     document.addEventListener("click", (e) => {
+        modalContent.innerHTML = ""
+
         if (e.target.closest("#add-project-button")) {
-            modal.appendChild(addProjectForm())
+            modalContent.appendChild(addProjectForm())
+            addProjectSubmitButtonListener()
+
             window.open("#popup", "_parent")
         } else if  (e.target.closest("#add-list-button")) {
-            modal.appendChild(addListItemsForm())
+            modalContent.appendChild(addListItemsForm())
+            addListItemSubmitButtonListener()
+
             window.open("#popup", "_parent")
         } else if  (!e.target.closest(".modal-content")) {
             window.open("#", "_parent")
