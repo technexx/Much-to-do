@@ -6,7 +6,7 @@ const content = document.querySelector(".content")
 export function createDomElements() {
     content.appendChild(projectHeader("Add a project!"))
     content.appendChild(addProjectButton())
-    content.appendChild(addProjectModal())
+    content.appendChild(addModal())
     content.appendChild(projectCardContainer())
 
     populateProjectCards()
@@ -28,7 +28,7 @@ const addProjectButton = () => {
     return button
 }
 
-const addProjectModal = () => {
+const addModal = () => {
     const modalDiv = document.createElement("div")
     modalDiv.classList.add("modal")
     modalDiv.setAttribute("id", "popup")
@@ -39,11 +39,11 @@ const addProjectModal = () => {
     modalDiv.appendChild(contentDiv)
 
     //Todo: Append either add project or add list form to modal depending on button pressed.
-    contentDiv.appendChild(addProjectForm())
+    // contentDiv.appendChild(addProjectForm())
     return modalDiv
 }
 
-const addProjectForm = () => {
+export const addProjectForm = () => {
     const addProjectForm = document.createElement("form")
     addProjectForm.setAttribute("id", "add-project-form")
 
@@ -68,7 +68,7 @@ const addProjectForm = () => {
     return addProjectForm
 }
 
-const addListItemsForm = () => {
+export const addListItemsForm = () => {
     const listItemForm = document.createElement("form")
     listItemForm.setAttribute("id", "add-list-form")
 

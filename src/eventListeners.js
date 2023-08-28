@@ -3,6 +3,8 @@ import { addProjectItemsToLocalStorage } from "./databaseOps"
 import { clearProjectCards } from "./domElements"
 import { populateProjectCards } from "./domElements"
 import { dismissPopup } from "./domElements"
+import { addProjectForm } from "./domElements"
+import { addListItemsForm } from "./domElements"
 
 export function setEventListeners() {
     // addProjectButtonListener()
@@ -13,11 +15,14 @@ export function setEventListeners() {
 }
 
 const documentListener = () => {
+    const modal = document.querySelector(".modal")
+
     document.addEventListener("click", (e) => {
         if (e.target.closest("#add-project-button")) {
+            modal.appendChild(addProjectForm())
             window.open("#popup", "_parent")
         } else if  (e.target.closest("#add-list-button")) {
-            //Todo: Change to add list popup
+            modal.appendChild(addListItemsForm())
             window.open("#popup", "_parent")
         } else if  (!e.target.closest(".modal-content")) {
             window.open("#", "_parent")
@@ -42,8 +47,6 @@ const addProjectSubmitButtonListener = () => {
 
     //Todo: Blank list on add (if array is ampty)
     button.addEventListener("click", (event) => {
-        console.log("add project clicked")
-
         event.preventDefault()
         addProjectToLocalStorage()
 
@@ -51,8 +54,6 @@ const addProjectSubmitButtonListener = () => {
         populateProjectCards()
 
         dismissPopup()
-
-        console.log(localStorage)
     })
 }
 
