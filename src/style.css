@@ -19,7 +19,7 @@
     margin-bottom: 20px;
 }
 
-.add-project-modal {
+.modal {
     align-items: center;
     display: flex;
     justify-content: center;
@@ -34,7 +34,7 @@
     opacity: 0;
 }
 
-.add-project-modal-content {
+.modal-content {
     position: absolute;
     background: lightcyan;
     width: 400px;
@@ -43,7 +43,7 @@
     border: 3px solid green;
 }
 
-#add-project-popup:target {
+#popup:target {
     visibility: visible;
     opacity: 1;
 }

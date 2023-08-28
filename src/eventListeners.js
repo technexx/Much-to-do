@@ -15,8 +15,11 @@ export function setEventListeners() {
 const documentListener = () => {
     document.addEventListener("click", (e) => {
         if (e.target.closest("#add-project-button")) {
-            window.open("#add-project-popup", "_parent")
-        } else if (!e.target.closest(".add-project-modal-content")) {
+            window.open("#popup", "_parent")
+        } else if  (e.target.closest("#add-list-button")) {
+            //Todo: Change to add list popup
+            window.open("#popup", "_parent")
+        } else if  (!e.target.closest(".modal-content")) {
             window.open("#", "_parent")
         }
 })

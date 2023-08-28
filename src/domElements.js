@@ -7,7 +7,6 @@ export function createDomElements() {
     content.appendChild(projectHeader("Add a project!"))
     content.appendChild(addProjectButton())
     content.appendChild(addProjectModal())
-    content.appendChild(addListPopUp())
     content.appendChild(projectCardContainer())
 
     populateProjectCards()
@@ -31,23 +30,17 @@ const addProjectButton = () => {
 
 const addProjectModal = () => {
     const modalDiv = document.createElement("div")
-    modalDiv.classList.add("add-project-modal")
-    modalDiv.setAttribute("id", "add-project-popup")
+    modalDiv.classList.add("modal")
+    modalDiv.setAttribute("id", "popup")
 
     const contentDiv = document.createElement("div")
-    contentDiv.classList.add("add-project-modal-content")
+    contentDiv.classList.add("modal-content")
 
     modalDiv.appendChild(contentDiv)
+
+    //Todo: Append either add project or add list form to modal depending on button pressed.
     contentDiv.appendChild(addProjectForm())
     return modalDiv
-}
-
-const addListPopUp = () => {
-    const div = document.createElement("div")
-    div.classList.add("add-list-popup")
-
-    div.appendChild(addListItemsForm())
-    return div
 }
 
 const addProjectForm = () => {
@@ -149,9 +142,7 @@ export function populateProjectCards() {
 
         const addListButton = document.createElement("button")
         addListButton.setAttribute("id", "add-list-button")
-        addListButton.innerHTML = "<img src='../src/images/pencil.svg'/>"
-        // addListButton.style.width = "30px"
-        // addListButton.style.backgroundColor = "white"        
+        addListButton.innerHTML = "<img src='../src/images/pencil.svg'/>"     
 
         const titleDiv = document.createElement("div")
         const listDiv = document.createElement("div")
