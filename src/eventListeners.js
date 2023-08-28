@@ -7,8 +7,6 @@ import { addProjectForm } from "./domElements"
 import { addListItemsForm } from "./domElements"
 
 export function setEventListeners() {
-    // addProjectButtonListener()
-    addListItemButtonListener()
     documentListener()
 }
 
@@ -16,33 +14,23 @@ const documentListener = () => {
     const modalContent = document.querySelector(".modal-content")
 
     document.addEventListener("click", (e) => {
-        modalContent.innerHTML = ""
 
         if (e.target.closest("#add-project-button")) {
+            modalContent.innerHTML = ""
             modalContent.appendChild(addProjectForm())
             addProjectSubmitButtonListener()
-
             window.open("#popup", "_parent")
         } else if  (e.target.closest("#add-list-button")) {
+            modalContent.innerHTML = ""
             modalContent.appendChild(addListItemsForm())
             addListItemSubmitButtonListener()
-
             window.open("#popup", "_parent")
-        } else if  (!e.target.closest(".modal-content")) {
+            //Todo: Don't run if interacting w/ form.
+        } else if (!e.target.closest(".modal-content")) {
+            console.log("clicked outside")
             window.open("#", "_parent")
         }
 })
-}
-
-const addListItemButtonListener = () => {
-    const button = document.querySelector("#add-list-button")
-    const popUp = document.querySelector(".add-list-popup")
-
-    if (button !== null) {
-        button.addEventListener("click", () => {
-
-        })
-    }
 }
 
 //Form submission reloads page, thus skipping console logs.
