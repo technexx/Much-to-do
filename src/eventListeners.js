@@ -14,7 +14,6 @@ const documentListener = () => {
     const modalContent = document.querySelector(".modal-content")
 
     document.addEventListener("click", (e) => {
-
         if (e.target.closest("#add-project-button")) {
             modalContent.innerHTML = ""
             modalContent.appendChild(addProjectForm())
@@ -27,7 +26,6 @@ const documentListener = () => {
             window.open("#popup", "_parent")
             //Todo: Don't run if interacting w/ form.
         } else if (!e.target.closest(".modal-content")) {
-            console.log("clicked outside")
             window.open("#", "_parent")
         }
 })
@@ -56,6 +54,8 @@ const addListItemSubmitButtonListener = () => {
         button[index].addEventListener("click", (event) => {
             event.preventDefault()
             addProjectItemsToLocalStorage(index)
+            
+            dismissPopup()
         })
     })
 }
