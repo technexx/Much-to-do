@@ -67,6 +67,8 @@ export function addProjectItemsToLocalStorage(index) {
     //Pushes new item into array.
     const newListItem = new ListItem(title.value, desc.value, dueDate.value, priority, false)
     listArray.push(newListItem)
+
+    // console.log(localStorage)
     const modifiedProject = new Project(parsedProject.title, listArray)
     localStorage.setItem(projectKey, JSON.stringify(modifiedProject))
 

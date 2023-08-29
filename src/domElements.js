@@ -162,6 +162,7 @@ export function populateProjectCards() {
     const projectContainer = document.querySelector(".project-container")
     const allProjects = getProjectsFromLocalStorage()
 
+    console.log(allProjects)
     for (let i=0; i<allProjects.length; i++) {
         const projectDiv = document.createElement("div")
         projectDiv.classList.add("projects")
