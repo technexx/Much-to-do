@@ -1,4 +1,4 @@
-import { getProjectsFromLocalStorage } from "./databaseOps"
+import { deleteAllLocalObjects, getProjectsFromLocalStorage } from "./databaseOps"
 import { sub } from "date-fns"
 
 const content = document.querySelector(".content")
@@ -133,6 +133,7 @@ const projectCardContainer = () => {
 }
 
 export function populateProjectCards() {
+    // deleteAllLocalObjects()
     const projectContainer = document.querySelector(".project-container")
     const allProjects = getProjectsFromLocalStorage()
 
@@ -149,6 +150,8 @@ export function populateProjectCards() {
         titleDiv.classList.add("project-title")
         listDiv.classList.add("project-item-array")
 
+        console.log(localStorage)
+        console.log(allProjects)
         const project = JSON.parse(allProjects[i])
 
         titleDiv.innerText = project.title

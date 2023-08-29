@@ -52,12 +52,14 @@ export function addProjectItemsToLocalStorage(index) {
     const priority = prioritySelector.options[prioritySelector.selectedIndex].text
 
     const projectArray = getProjectsFromLocalStorage()
-    console.log("project array is " + projectArray)
-    const projectKey = projectArray[index]
-    const project = localStorage.getItem(localStorage.key(projectKey))
+    const projectKeyArray = getProjectKeyArray()
+
+    const projectKey = projectKeyArray[index]
+    const project = localStorage.getItem(projectKey)
 
     const listItem = new ListItem(title.value, desc.value, dueDate.value, priority, false)
 
+     /*Project is as array, not string, so parse does not work*/
     const parsedProject = JSON.parse(project)
     const listArray = []
 
@@ -66,18 +68,17 @@ export function addProjectItemsToLocalStorage(index) {
     //Adds current List object in Project to array.
     if (parsedProject.lists !== "") {
         for (let i=0; i<parsedProject.lists.length; i++) {
-            listArray.push (parsedProject.lists[i])
+            listArray.push(parsedProject.lists[i])
         }
     }
     //Pushes new item into array.
     listArray.push(listItem)
-    console.log(JSON.stringify(listArray))
-    const modifiedProject = new Project(projectKey, JSON.stringify(listArray))
-    console.log(modifiedProject)
-
-    localStorage.setItem(projectKey, modifiedProject)
+    const modifiedProject = new Project(parsedProject.title, listArray)
+    localStorage.setItem(projectKey, JSON.stringify(modifiedProject))
 
     const testProject = localStorage.getItem(localStorage.key(projectKey))
+
+    console.log(testProject)
     console.log(JSON.parse(testProject))
 }
 
