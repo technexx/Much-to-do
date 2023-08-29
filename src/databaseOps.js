@@ -51,19 +51,12 @@ export function addProjectItemsToLocalStorage(index) {
     const prioritySelector = document.querySelector("#priority-selector")
     const priority = prioritySelector.options[prioritySelector.selectedIndex].text
 
-    const projectArray = getProjectsFromLocalStorage()
     const projectKeyArray = getProjectKeyArray()
-
     const projectKey = projectKeyArray[index]
     const project = localStorage.getItem(projectKey)
 
-    const listItem = new ListItem(title.value, desc.value, dueDate.value, priority, false)
-
-     /*Project is as array, not string, so parse does not work*/
     const parsedProject = JSON.parse(project)
     const listArray = []
-
-    parsedProject.lists = [(new ListItem("boo", "boo", "bap", "what", false))]
 
     //Adds current List object in Project to array.
     if (parsedProject.lists !== "") {
@@ -72,14 +65,15 @@ export function addProjectItemsToLocalStorage(index) {
         }
     }
     //Pushes new item into array.
-    listArray.push(listItem)
+    const newListItem = new ListItem(title.value, desc.value, dueDate.value, priority, false)
+    listArray.push(newListItem)
     const modifiedProject = new Project(parsedProject.title, listArray)
     localStorage.setItem(projectKey, JSON.stringify(modifiedProject))
 
     const testProject = localStorage.getItem(localStorage.key(projectKey))
 
-    console.log(testProject)
-    console.log(JSON.parse(testProject))
+    // console.log(testProject)
+    // console.log(JSON.parse(testProject))
 }
 
 export function deleteAllLocalObjects() {
@@ -97,16 +91,4 @@ class ListItem {
     constructor (title, description, dueDate, priority, isCompleted) {
         this.title = title; this.description = description; this.dueDate = dueDate; this.priority = priority; this.isCompleted = isCompleted;
     }
-}
-
-function createAndLogDummyObjects() {
-    const listItemOne = new ListItem("itemOne", "does stuff", "1/1/2024", "low", false)
-    const listItemTwo = new ListItem("itemTwo", "does more stuff", "5/5/2054", "medium", true)
-    const listItemThree = new ListItem("itemThree", "does so much stuff", "3/3/2034", "high", false)
-    
-    const listOne = new List("test list", [listItemOne, listItemTwo, listItemThree])
-    
-    const projectOne = new Project("Test Project", listOne)
-    
-    console.log(projectOne)
 }

@@ -55,6 +55,7 @@ const addListItemSubmitButtonListener = () => {
         button[index].addEventListener("click", (event) => {
             event.preventDefault()
             addProjectItemsToLocalStorage(index)
+            populateProjectCards()
 
             dismissPopup()
         })

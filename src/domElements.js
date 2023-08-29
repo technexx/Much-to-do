@@ -126,6 +126,31 @@ export const addListItemsForm = () => {
     return listItemForm
 }
 
+const listItemsContent = () => {
+    const itemDiv = document.createElement("div")
+    itemDiv.classList.add("project-item-list")
+
+    const title = document.createElement("p")
+    const desc = document.createElement("p")
+    const dueDate = document.createElement("p")
+    const priority = document.createElement("p")
+    const isCompleted = document.createElement("p")
+
+    title.innerText = projectItems[j].title
+    desc.innerText = projectItems[j].description
+    dueDate.innerText = projectItems[j].dueDate
+    priority.innerText = projectItems[j].priority
+    isCompleted.innerText = projectItems[j].isCompleted
+
+    itemDiv.appendChild(title)
+    itemDiv.appendChild(desc)
+    itemDiv.appendChild(dueDate)
+    itemDiv.appendChild(priority)
+    itemDiv.appendChild(isCompleted)
+
+    return itemDiv
+}
+
 const projectCardContainer = () => {
     const div = document.createElement("div")
     div.classList.add("project-container")
@@ -150,8 +175,6 @@ export function populateProjectCards() {
         titleDiv.classList.add("project-title")
         listDiv.classList.add("project-item-array")
 
-        console.log(localStorage)
-        console.log(allProjects)
         const project = JSON.parse(allProjects[i])
 
         titleDiv.innerText = project.title
@@ -174,29 +197,6 @@ export function populateProjectCards() {
             projectContainer.appendChild(projectDiv)
         }
     }
-}
-
-const populateProjectListOfItems = () => {
-    const itemDiv = document.createElement("div")
-    itemDiv.classList.add("project-item-list")
-
-    const title = document.createElement("p")
-    const desc = document.createElement("p")
-    const dueDate = document.createElement("p")
-    const priority = document.createElement("p")
-    const isCompleted = document.createElement("p")
-
-    title.innerText = projectItems[j].title
-    desc.innerText = projectItems[j].description
-    dueDate.innerText = projectItems[j].dueDate
-    priority.innerText = projectItems[j].priority
-    isCompleted.innerText = projectItems[j].isCompleted
-
-    itemDiv.appendChild(title)
-    itemDiv.appendChild(desc)
-    itemDiv.appendChild(dueDate)
-    itemDiv.appendChild(priority)
-    itemDiv.appendChild(isCompleted)
 }
 
 export function clearProjectCards() {
