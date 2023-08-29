@@ -13,7 +13,7 @@ export function testPopulation() {
     console.log(project)
 }
 
-export function addProjectToLocalStorage() {
+export function addBlankProjectToLocalStorage() {
     const numberOfCurrentProject = getProjectsFromLocalStorage().length
 
     const content = document.querySelector("#add-project-title-input")
@@ -45,17 +45,27 @@ export function addProjectItemsToLocalStorage(index) {
     const listItem = new ListItem(title.value, desc.value, dueDate.value, priority, false)
 
     const parsedProject = JSON.parse(project)
+    const listArray = []
+    const parsedList = []
+
     console.log(parsedProject)
+    parsedProject.lists = [(new ListItem("boo", "boo", "bap", "what", false))]
 
-    parsedProject.lists = listItem
+    if (parsedProject.lists !== "") {
+        // parsedList = JSON.parse(project.lists)
+        for (let i=0; i<parsedProject.lists.length; i++) {
+            listArray.push (parsedProject.lists[i])
+        }
+    }
+    listArray.push(listItem)
+    
     console.log(parsedProject)
+    console.log(listArray)
 
-    //Converts localStorage project to Project Object, and then pushes the new list into its array of lists.
-    // let convertedProject = JSON.parse(project)
-    // convertedProject.List.push(listItem)
+     //TODO: parsedProject.lists needs to be set as array of List objects
+    // localStorage.setItem(projectKey, JSON.stringify(parsedProject))
 
-    //Todo: Project needs to be edited, not added as a new one.
-    // localStorage.setItem(("project-" + projectIndex), JSON.stringify(convertedProject))
+    // console.log(localStorage)
 }
 
 export function deleteAllLocalObjects() {
