@@ -1,3 +1,5 @@
+import { te } from "date-fns/locale"
+
 export const ProjectsArray = []
 export const ListArray = []
 export const ListItemsArray = []
@@ -31,6 +33,16 @@ export function getProjectsFromLocalStorage() {
     return projects
 }
 
+function getProjectKeyArray() {
+    let array = []
+    for (let i=0; i<localStorage.length; i++) {
+        if (localStorage.key(i).includes("project-")) {
+            array.push(localStorage.key(i))
+        }
+    }
+    return array
+}
+
 export function addProjectItemsToLocalStorage(index) {
     const title = document.querySelector("#add-list-title-input")
     const desc = document.querySelector("#add-list-desc-input")
@@ -38,34 +50,34 @@ export function addProjectItemsToLocalStorage(index) {
     const prioritySelector = document.querySelector("#priority-selector")
     const priority = prioritySelector.options[prioritySelector.selectedIndex].text
 
-    const projectKeyArray = getProjectsFromLocalStorage()
-    const projectKey = projectKeyArray[index]
+    console.log(getProjectKeyArray())
+    const projectKey = getProjectKeyArray()[index]
+    console.log(projectKey)
     const project = localStorage.getItem(localStorage.key(projectKey))
 
     const listItem = new ListItem(title.value, desc.value, dueDate.value, priority, false)
 
     const parsedProject = JSON.parse(project)
     const listArray = []
-    const parsedList = []
 
-    console.log(parsedProject)
     parsedProject.lists = [(new ListItem("boo", "boo", "bap", "what", false))]
 
+    //Adds current List object in Project to array.
     if (parsedProject.lists !== "") {
-        // parsedList = JSON.parse(project.lists)
         for (let i=0; i<parsedProject.lists.length; i++) {
             listArray.push (parsedProject.lists[i])
         }
     }
+    //Pushes new item into array.
     listArray.push(listItem)
-    
-    console.log(parsedProject)
-    console.log(listArray)
+    console.log(JSON.stringify(listArray))
+    const modifiedProject = new Project(projectKey, JSON.stringify(listArray))
+    console.log(modifiedProject)
 
-     //TODO: parsedProject.lists needs to be set as array of List objects
-    // localStorage.setItem(projectKey, JSON.stringify(parsedProject))
+    localStorage.setItem(projectKey, modifiedProject)
 
-    // console.log(localStorage)
+    const testProject = localStorage.getItem(localStorage.key(projectKey))
+    console.log(JSON.parse(testProject))
 }
 
 export function deleteAllLocalObjects() {
