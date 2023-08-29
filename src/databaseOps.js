@@ -43,6 +43,7 @@ function getProjectKeyArray() {
     return array
 }
 
+
 export function addProjectItemsToLocalStorage(index) {
     const title = document.querySelector("#add-list-title-input")
     const desc = document.querySelector("#add-list-desc-input")
@@ -50,9 +51,9 @@ export function addProjectItemsToLocalStorage(index) {
     const prioritySelector = document.querySelector("#priority-selector")
     const priority = prioritySelector.options[prioritySelector.selectedIndex].text
 
-    console.log(getProjectKeyArray())
-    const projectKey = getProjectKeyArray()[index]
-    console.log(projectKey)
+    const projectArray = getProjectsFromLocalStorage()
+    console.log("project array is " + projectArray)
+    const projectKey = projectArray[index]
     const project = localStorage.getItem(localStorage.key(projectKey))
 
     const listItem = new ListItem(title.value, desc.value, dueDate.value, priority, false)
