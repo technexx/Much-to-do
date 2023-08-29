@@ -126,7 +126,7 @@ export const addListItemsForm = () => {
     return listItemForm
 }
 
-const listItemsContent = () => {
+const listItemsContent = (index) => {
     const itemDiv = document.createElement("div")
     itemDiv.classList.add("project-item-list")
 
@@ -136,11 +136,11 @@ const listItemsContent = () => {
     const priority = document.createElement("p")
     const isCompleted = document.createElement("p")
 
-    title.innerText = projectItems[j].title
-    desc.innerText = projectItems[j].description
-    dueDate.innerText = projectItems[j].dueDate
-    priority.innerText = projectItems[j].priority
-    isCompleted.innerText = projectItems[j].isCompleted
+    title.innerText = projectItems[index].title
+    desc.innerText = projectItems[index].description
+    dueDate.innerText = projectItems[index].dueDate
+    priority.innerText = projectItems[index].priority
+    isCompleted.innerText = projectItems[index].isCompleted
 
     itemDiv.appendChild(title)
     itemDiv.appendChild(desc)

@@ -26,6 +26,15 @@ const documentListener = () => {
             addListItemSubmitButtonListener()
             window.open("#popup", "_parent")
             //Todo: Don't run if interacting w/ form.
+        } else if (e.target.closest(".project-item-container")) {
+          const itemList = document.querySelectorAll(".project-item-container")
+          itemList.forEach(function callback(value, index) {
+            value.addEventListener("click", (event) => {
+                console.log(index)
+            })
+          })
+
+            // window.open("#popup", "_parent")
         } else if (!e.target.closest(".modal-content")) {
             window.open("#", "_parent")
         }
