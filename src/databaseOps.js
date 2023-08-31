@@ -43,6 +43,9 @@ function getProjectKeyArray() {
     return array
 }
 
+export function getProjectIndex() {
+    
+}
 
 export function addProjectItemsToLocalStorage(index) {
     const title = document.querySelector("#add-list-title-input")
@@ -68,14 +71,10 @@ export function addProjectItemsToLocalStorage(index) {
     const newListItem = new ListItem(title.value, desc.value, dueDate.value, priority, false)
     listArray.push(newListItem)
 
-    // console.log(localStorage)
     const modifiedProject = new Project(parsedProject.title, listArray)
     localStorage.setItem(projectKey, JSON.stringify(modifiedProject))
 
     const testProject = localStorage.getItem(localStorage.key(projectKey))
-
-    // console.log(testProject)
-    // console.log(JSON.parse(testProject))
 }
 
 export function deleteAllLocalObjects() {

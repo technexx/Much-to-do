@@ -126,7 +126,11 @@ export const addListItemsForm = () => {
     return listItemForm
 }
 
-const listItemsContent = (index) => {
+//TODO: Needs localStorage fetch using both project and list index (which we have set in eventListeners)
+export const populateListItemsContent = (projectIndex, listIndex) => {
+    const projectArray = getProjectsFromLocalStorage()
+    const listArray = projectArray[listIndex].lists
+
     const itemDiv = document.createElement("div")
     itemDiv.classList.add("project-item-list")
 
@@ -136,11 +140,11 @@ const listItemsContent = (index) => {
     const priority = document.createElement("p")
     const isCompleted = document.createElement("p")
 
-    title.innerText = projectItems[index].title
-    desc.innerText = projectItems[index].description
-    dueDate.innerText = projectItems[index].dueDate
-    priority.innerText = projectItems[index].priority
-    isCompleted.innerText = projectItems[index].isCompleted
+    title.innerText = projectItems[listIndex].title
+    desc.innerText = projectItems[listIndex].description
+    dueDate.innerText = projectItems[listIndex].dueDate
+    priority.innerText = projectItems[listIndex].priority
+    isCompleted.innerText = projectItems[listIndex].isCompleted
 
     itemDiv.appendChild(title)
     itemDiv.appendChild(desc)
@@ -162,10 +166,10 @@ export function populateProjectCards() {
     const projectContainer = document.querySelector(".project-container")
     const allProjects = getProjectsFromLocalStorage()
 
-    console.log(allProjects)
     for (let i=0; i<allProjects.length; i++) {
         const projectDiv = document.createElement("div")
         projectDiv.classList.add("projects")
+        // projectDiv.setAttribute("id", "project-" + i)
 
         const addListButton = document.createElement("button")
         addListButton.setAttribute("id", "add-list-button")
@@ -187,6 +191,7 @@ export function populateProjectCards() {
             for (let j=0; j<projectItems.length; j++) {
                 const itemDiv = document.createElement("div")
                 itemDiv.classList.add("project-item-container")
+                itemDiv.setAttribute("id", "container-" + i)
     
                 const title = document.createElement("p")
                 title.innerText = projectItems[j].title
