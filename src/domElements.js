@@ -128,8 +128,9 @@ export const addListItemsForm = () => {
 
 //TODO: Needs localStorage fetch using both project and list index (which we have set in eventListeners)
 export const populateListItemsContent = (projectIndex, listIndex) => {
-    const projectArray = getProjectsFromLocalStorage()
-    const listArray = projectArray[listIndex].lists
+    const projects = JSON.parse(getProjectsFromLocalStorage())
+    const listItems = projects.lists[listIndex]
+    console.log(listItems)
 
     const itemDiv = document.createElement("div")
     itemDiv.classList.add("project-item-list")
@@ -140,11 +141,11 @@ export const populateListItemsContent = (projectIndex, listIndex) => {
     const priority = document.createElement("p")
     const isCompleted = document.createElement("p")
 
-    title.innerText = projectItems[listIndex].title
-    desc.innerText = projectItems[listIndex].description
-    dueDate.innerText = projectItems[listIndex].dueDate
-    priority.innerText = projectItems[listIndex].priority
-    isCompleted.innerText = projectItems[listIndex].isCompleted
+    title.innerText = listItems.title
+    desc.innerText = listItems.description
+    dueDate.innerText = listItems.dueDate
+    priority.innerText = listItems.priority
+    isCompleted.innerText = listItems.isCompleted
 
     itemDiv.appendChild(title)
     itemDiv.appendChild(desc)
@@ -182,8 +183,8 @@ export function populateProjectCards() {
 
         const project = allProjects[i]
         const modifiedProject = JSON.parse(project)
-        console.log(project)
-        console.log(modifiedProject)
+        // console.log(project)
+        // console.log(modifiedProject)
 
         titleDiv.innerText = modifiedProject.title
         projectDiv.appendChild(titleDiv)

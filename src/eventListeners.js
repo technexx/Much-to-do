@@ -32,7 +32,10 @@ const documentListener = () => {
           itemList.forEach(function callback(value, listIndex) {
             value.addEventListener("click", (event) => {
                 const projectIndex = value.getAttribute("id").split("-")[1]
+                console.log(projectIndex)
+                console.log(listIndex)
                 populateListItemsContent(projectIndex, listIndex)
+
             })
           })
         } else if (!e.target.closest(".modal-content")) {
