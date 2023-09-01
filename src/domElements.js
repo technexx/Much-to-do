@@ -126,38 +126,6 @@ export const addListItemsForm = () => {
     return listItemForm
 }
 
-//TODO: Attach div to modal.
-export const listItemsContent = (projectIndex, listIndex) => {
-    const projects = JSON.parse(getProjectsFromLocalStorage())
-    const listItems = projects.lists[listIndex]
-
-    const itemDiv = document.createElement("div")
-    itemDiv.classList.add("project-item-list")
-
-    const projectTitle = document.createElement("p")
-    const itemTitle = document.createElement("p")
-    const desc = document.createElement("p")
-    const dueDate = document.createElement("p")
-    const priority = document.createElement("p")
-    const isCompleted = document.createElement("p")
-
-    projectTitle.innerText = projects.title[listIndex]
-    itemTitle.innerText = listItems.title
-    desc.innerText = listItems.description
-    dueDate.innerText = listItems.dueDate
-    priority.innerText = listItems.priority
-    isCompleted.innerText = listItems.isCompleted
-
-    itemDiv.append(projectTitle)
-    itemDiv.appendChild(itemTitle)
-    itemDiv.appendChild(desc)
-    itemDiv.appendChild(dueDate)
-    itemDiv.appendChild(priority)
-    itemDiv.appendChild(isCompleted)
-
-    return itemDiv
-}
-
 const projectCardContainer = () => {
     const div = document.createElement("div")
     div.classList.add("project-container")
@@ -210,10 +178,48 @@ export function populateProjectCards() {
     }
 }
 
+export const listItemsContent = (projectIndex, listIndex) => {
+    const projects = JSON.parse(getProjectsFromLocalStorage())
+    const listItems = projects.lists[listIndex]
+
+    const itemDiv = document.createElement("div")
+    itemDiv.classList.add("project-item-list")
+
+    const projectTitle = document.createElement("p")
+    const itemTitle = document.createElement("p")
+    const desc = document.createElement("p")
+    const dueDate = document.createElement("p")
+    const priority = document.createElement("p")
+    const isCompleted = document.createElement("p")
+
+    projectTitle.innerText = projects.title[listIndex]
+    itemTitle.innerText = listItems.title
+    desc.innerText = listItems.description
+    dueDate.innerText = listItems.dueDate
+    priority.innerText = listItems.priority
+    isCompleted.innerText = listItems.isCompleted
+
+    itemDiv.append(projectTitle)
+    itemDiv.appendChild(itemTitle)
+    itemDiv.appendChild(desc)
+    itemDiv.appendChild(dueDate)
+    itemDiv.appendChild(priority)
+    itemDiv.appendChild(isCompleted)
+
+    return itemDiv
+}
+
 export function clearProjectCards() {
     const projects = document.querySelectorAll(".projects")
     projects.forEach(project => {
         project.remove()
+    })
+}
+
+export function clearItemListContent() {
+    const itemContent = document.querySelectorAll(".project-item-list")
+    itemContent.forEach(itemStuff => {
+        itemStuff.remove()
     })
 }
 
