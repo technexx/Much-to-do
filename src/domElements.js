@@ -180,13 +180,16 @@ export function populateProjectCards() {
         titleDiv.classList.add("project-title")
         listDiv.classList.add("project-item-array")
 
-        const project = JSON.parse(allProjects[i])
+        const project = allProjects[i]
+        const modifiedProject = JSON.parse(project)
+        console.log(project)
+        console.log(modifiedProject)
 
-        titleDiv.innerText = project.title
+        titleDiv.innerText = modifiedProject.title
         projectDiv.appendChild(titleDiv)
 
-        if (project.lists !== undefined) {
-            const projectItems = project.lists
+        if (modifiedProject.lists !== undefined) {
+            const projectItems = modifiedProject.lists
         
             for (let j=0; j<projectItems.length; j++) {
                 const itemDiv = document.createElement("div")
@@ -198,10 +201,10 @@ export function populateProjectCards() {
                 itemDiv.appendChild(title)
                 projectDiv.appendChild(itemDiv)
             }
-    
-            projectDiv.appendChild(addListButton)
-            projectContainer.appendChild(projectDiv)
         }
+
+        projectDiv.appendChild(addListButton)
+        projectContainer.appendChild(projectDiv)
     }
 }
 
