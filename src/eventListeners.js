@@ -6,7 +6,7 @@ import { populateProjectListOfItems } from "./domElements"
 import { dismissPopup } from "./domElements"
 import { addProjectForm } from "./domElements"
 import { addListItemsForm } from "./domElements"
-import { populateListItemsContent } from "./domElements"
+import { listItemsContent } from "./domElements"
 
 export function setEventListeners() {
     documentListener()
@@ -28,14 +28,11 @@ const documentListener = () => {
             window.open("#popup", "_parent")
         } else if (e.target.closest(".project-item-container")) {
           const itemList = document.querySelectorAll(".project-item-container")
-
           itemList.forEach(function callback(value, listIndex) {
             value.addEventListener("click", (event) => {
                 const projectIndex = value.getAttribute("id").split("-")[1]
-                console.log(projectIndex)
-                console.log(listIndex)
-                populateListItemsContent(projectIndex, listIndex)
-
+                modalContent.appendChild(listItemsContent(projectIndex, listIndex))
+                window.open("#popup", "_parent")
             })
           })
         } else if (!e.target.closest(".modal-content")) {

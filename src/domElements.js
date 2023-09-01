@@ -126,28 +126,30 @@ export const addListItemsForm = () => {
     return listItemForm
 }
 
-//TODO: Needs localStorage fetch using both project and list index (which we have set in eventListeners)
-export const populateListItemsContent = (projectIndex, listIndex) => {
+//TODO: Attach div to modal.
+export const listItemsContent = (projectIndex, listIndex) => {
     const projects = JSON.parse(getProjectsFromLocalStorage())
     const listItems = projects.lists[listIndex]
-    console.log(listItems)
 
     const itemDiv = document.createElement("div")
     itemDiv.classList.add("project-item-list")
 
-    const title = document.createElement("p")
+    const projectTitle = document.createElement("p")
+    const itemTitle = document.createElement("p")
     const desc = document.createElement("p")
     const dueDate = document.createElement("p")
     const priority = document.createElement("p")
     const isCompleted = document.createElement("p")
 
-    title.innerText = listItems.title
+    projectTitle.innerText = projects.title[listIndex]
+    itemTitle.innerText = listItems.title
     desc.innerText = listItems.description
     dueDate.innerText = listItems.dueDate
     priority.innerText = listItems.priority
     isCompleted.innerText = listItems.isCompleted
 
-    itemDiv.appendChild(title)
+    itemDiv.append(projectTitle)
+    itemDiv.appendChild(itemTitle)
     itemDiv.appendChild(desc)
     itemDiv.appendChild(dueDate)
     itemDiv.appendChild(priority)
@@ -170,7 +172,6 @@ export function populateProjectCards() {
     for (let i=0; i<allProjects.length; i++) {
         const projectDiv = document.createElement("div")
         projectDiv.classList.add("projects")
-        // projectDiv.setAttribute("id", "project-" + i)
 
         const addListButton = document.createElement("button")
         addListButton.setAttribute("id", "add-list-button")
