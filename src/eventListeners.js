@@ -15,18 +15,20 @@ export function setEventListeners() {
 
 const documentListener = () => {
     const modalContent = document.querySelector(".modal-content")
-    modalContent.innerHTML = ""
 
     document.addEventListener("click", (e) => {
         if (e.target.closest("#add-project-button")) {
+            modalContent.innerHTML = ""
             modalContent.appendChild(addProjectForm())
             addProjectSubmitButtonListener()
             window.open("#popup", "_parent")
         } else if  (e.target.closest("#add-list-button")) {
+            modalContent.innerHTML = ""
             modalContent.appendChild(addListItemsForm())
             addListItemSubmitButtonListener()
             window.open("#popup", "_parent")
         } else if (e.target.closest(".project-item-container")) {
+            modalContent.innerHTML = ""
             const itemList = document.querySelectorAll(".project-item-container")
             itemList.forEach(function callback(value, listIndex) {
               value.addEventListener("click", (event) => {
