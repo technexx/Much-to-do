@@ -152,8 +152,8 @@ export function populateProjectCards() {
 
         const project = allProjects[i]
         const modifiedProject = JSON.parse(project)
-        console.log(project)
-        console.log(modifiedProject)
+        // console.log(project)
+        // console.log(modifiedProject)
 
         titleDiv.innerText = modifiedProject.title
         projectDiv.appendChild(titleDiv)
@@ -164,7 +164,8 @@ export function populateProjectCards() {
             for (let j=0; j<projectItems.length; j++) {
                 const itemDiv = document.createElement("div")
                 itemDiv.classList.add("project-item-container")
-                itemDiv.setAttribute("id", "container-" + i)
+                itemDiv.setAttribute("project-id", i)
+                itemDiv.setAttribute("item-id", j)
     
                 const title = document.createElement("p")
                 title.innerText = projectItems[j].title
@@ -179,15 +180,15 @@ export function populateProjectCards() {
 }
 
 export const listItemsContent = (projectIndex, listIndex) => {
-    //TODO: Bracket at end of Project object's Lists array seems to be missing. May have to stringify both List array AND Project object before pushing to localStorage.
     const allProjects = getProjectsFromLocalStorage()
     const project = allProjects[projectIndex]
     const modifiedProject = JSON.parse(project)
     const listItem = modifiedProject.lists[listIndex]
+    //TODO: listIndex doesn't reset in multiple projects (e.g. second project will continue list index of first)
     console.log("project index is " + projectIndex)
     console.log("list index is " + listIndex)
-    console.log(listItem)
-    console.log(listItem.title)
+    // console.log(listItem)
+    // console.log(listItem.title)
 
     const itemDiv = document.createElement("div")
     itemDiv.classList.add("project-item-list")

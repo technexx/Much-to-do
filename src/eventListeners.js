@@ -30,11 +30,23 @@ const documentListener = () => {
         } else if (e.target.closest(".project-item-container")) {
             modalContent.innerHTML = ""
             const itemList = document.querySelectorAll(".project-item-container")
-            itemList.forEach(function callback(value, listIndex) {
+
+          //TODO: listIndex doesn't reset in multiple projects (e.g. second project will continue list index of first)
+                //TODO: Add a -# of item as another attribute, doesn't need to be "id".
+            itemList.forEach(function callback(value) {
               value.addEventListener("click", (event) => {
                   event.preventDefault()
                   clearItemListContent()
-                  const projectIndex = value.getAttribute("id").split("-")[1]
+                  //Each project item container has an ID set to its parent project index (e.g. first project card has item containers 'container-0', second has 'container-1', etc.)
+                  const projectIndex = value.getAttribute("project-id")
+                  const listIndex = value.getAttribute("item-id")
+
+                //   console.log(projectIndex)
+                //   console.log(listIndex)
+
+                  const allProjectElements = document.querySelectorAll(".projects")
+                  const selectedProject = allProjectElements[projectIndex]
+
                   modalContent.appendChild(listItemsContent(projectIndex, listIndex))
                   window.open("#popup", "_parent")
               })
