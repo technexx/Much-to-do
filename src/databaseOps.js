@@ -73,8 +73,6 @@ export function addProjectItemsToLocalStorage(index) {
 
     const modifiedProject = new Project(parsedProject.title, listArray)
     localStorage.setItem(projectKey, JSON.stringify(modifiedProject))
-
-    const testProject = localStorage.getItem(localStorage.key(projectKey))
 }
 
 export function deleteAllLocalObjects() {

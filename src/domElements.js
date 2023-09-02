@@ -152,8 +152,8 @@ export function populateProjectCards() {
 
         const project = allProjects[i]
         const modifiedProject = JSON.parse(project)
-        // console.log(project)
-        // console.log(modifiedProject)
+        console.log(project)
+        console.log(modifiedProject)
 
         titleDiv.innerText = modifiedProject.title
         projectDiv.appendChild(titleDiv)
@@ -179,8 +179,15 @@ export function populateProjectCards() {
 }
 
 export const listItemsContent = (projectIndex, listIndex) => {
-    const projects = JSON.parse(getProjectsFromLocalStorage())
-    const listItems = projects.lists[listIndex]
+    //TODO: Bracket at end of Project object's Lists array seems to be missing. May have to stringify both List array AND Project object before pushing to localStorage.
+    const allProjects = getProjectsFromLocalStorage()
+    const project = allProjects[projectIndex]
+    const modifiedProject = JSON.parse(project)
+    const listItem = modifiedProject.lists[listIndex]
+    console.log("project index is " + projectIndex)
+    console.log("list index is " + listIndex)
+    console.log(listItem)
+    console.log(listItem.title)
 
     const itemDiv = document.createElement("div")
     itemDiv.classList.add("project-item-list")
@@ -192,12 +199,14 @@ export const listItemsContent = (projectIndex, listIndex) => {
     const priority = document.createElement("p")
     const isCompleted = document.createElement("p")
 
-    projectTitle.innerText = projects.title[listIndex]
-    itemTitle.innerText = listItems.title
-    desc.innerText = listItems.description
-    dueDate.innerText = listItems.dueDate
-    priority.innerText = listItems.priority
-    isCompleted.innerText = listItems.isCompleted
+    // projectTitle.innerText = project.title[projectIndex]
+    itemTitle.innerText = listItem.title
+    desc.innerText = listItem.description
+    dueDate.innerText = listItem.dueDate
+    priority.innerText = listItem.priority
+    isCompleted.innerText = listItem.isCompleted
+
+    console.log(itemTitle.innerText)
 
     itemDiv.append(projectTitle)
     itemDiv.appendChild(itemTitle)
