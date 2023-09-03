@@ -40,9 +40,10 @@ const documentListener = () => {
                   const projectIndex = value.getAttribute("project-id")
                   const listIndex = value.getAttribute("item-id")
 
-                  //TODO: Why is this not appending properly? This logic executes successive times after each click (1, 2, 3, etc.). We are ADDING an event listener EVERY time an item is clicked.
+                  //TODO: Why is this not appending properly? This logic executes successive times after each click (1, 2, 3, etc.), because we are ADDING an event listener EVERY time an item is clicked. It's fine for the form submission buttons above since they get cleared.
               })
             })
+            // modalContent.appendChild(listItemsContent(projectIndex, listIndex))
             modalContent.appendChild(listItemsContent(projectIndex, listIndex))
             window.open("#popup", "_parent")
 
