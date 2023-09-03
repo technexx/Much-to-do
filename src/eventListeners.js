@@ -11,8 +11,6 @@ import { listItemsContent } from "./domElements"
 
 export function setEventListeners() {
     documentListener()
-    addProjectSubmitButtonListener()
-    addListItemSubmitButtonListener()
 }
 
 const documentListener = () => {
@@ -22,10 +20,12 @@ const documentListener = () => {
         if (e.target.closest("#add-project-button")) {
             modalContent.innerHTML = ""
             modalContent.appendChild(addProjectForm())
+            addProjectSubmitButtonListener()
             window.open("#popup", "_parent")
         } else if  (e.target.closest("#add-list-button")) {
             modalContent.innerHTML = ""
             modalContent.appendChild(addListItemsForm())
+            addListItemSubmitButtonListener()
             window.open("#popup", "_parent")
         } else if (e.target.closest(".project-item-container")) {
             modalContent.innerHTML = ""
@@ -41,10 +41,12 @@ const documentListener = () => {
                   const listIndex = value.getAttribute("item-id")
 
                   //TODO: Why is this not appending properly? This logic executes successive times after each click (1, 2, 3, etc.). We are ADDING an event listener EVERY time an item is clicked.
-                  modalContent.appendChild(listItemsContent(projectIndex, listIndex))
-                  window.open("#popup", "_parent")
               })
             })
+            modalContent.appendChild(listItemsContent(projectIndex, listIndex))
+            window.open("#popup", "_parent")
+
+
         } else if (!e.target.closest(".modal-content")) {
             window.open("#", "_parent")
         }
