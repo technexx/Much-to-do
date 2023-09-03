@@ -152,8 +152,6 @@ export function populateProjectCards() {
 
         const project = allProjects[i]
         const modifiedProject = JSON.parse(project)
-        // console.log(project)
-        // console.log(modifiedProject)
 
         titleDiv.innerText = modifiedProject.title
         projectDiv.appendChild(titleDiv)
@@ -179,14 +177,30 @@ export function populateProjectCards() {
     }
 }
 
-export const listItemsContent = (projectIndex, listIndex) => {
+export const populateListItemsContent = (projectIndex, listIndex) => {
     const allProjects = getProjectsFromLocalStorage()
     const project = allProjects[projectIndex]
+
     const modifiedProject = JSON.parse(project)
     const listItem = modifiedProject.lists[listIndex]
-    // console.log(listItem)
-    // console.log(listItem.title)
 
+    const projectTitle = document.querySelector("#project-title-in-item")
+    const itemTitle = document.querySelector("#item-title")
+    const desc = document.querySelector("#item-desc")
+    const dueDate = document.querySelector("#item-dueDate")
+    const priority = document.querySelector("#item-priority")
+    const isCompleted = document.querySelector("#item-isCompleted")
+
+    console.log(modifiedProject.title)
+    projectTitle.innerText = modifiedProject.title
+    itemTitle.innerText = listItem.title
+    desc.innerText = listItem.description
+    dueDate.innerText = listItem.dueDate
+    priority.innerText = listItem.priority
+    isCompleted.innerText = listItem.isCompleted
+}
+
+export const listItemsContent = () => {
     const itemDiv = document.createElement("div")
     itemDiv.classList.add("project-item-list")
 
@@ -197,12 +211,12 @@ export const listItemsContent = (projectIndex, listIndex) => {
     const priority = document.createElement("p")
     const isCompleted = document.createElement("p")
 
-    projectTitle.innerText = project.title
-    itemTitle.innerText = listItem.title
-    desc.innerText = listItem.description
-    dueDate.innerText = listItem.dueDate
-    priority.innerText = listItem.priority
-    isCompleted.innerText = listItem.isCompleted
+    projectTitle.setAttribute("id", "project-title-in-item")
+    itemTitle.setAttribute("id", "item-title")
+    desc.setAttribute("id", "item-desc")
+    dueDate.setAttribute("id", "item-dueDate")
+    priority.setAttribute("id", "item-priority")
+    isCompleted.setAttribute("id", "item-isCompleted")
 
     itemDiv.append(projectTitle)
     itemDiv.appendChild(itemTitle)

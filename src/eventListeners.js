@@ -8,9 +8,14 @@ import { dismissPopup } from "./domElements"
 import { addProjectForm } from "./domElements"
 import { addListItemsForm } from "./domElements"
 import { listItemsContent } from "./domElements"
+import { populateListItemsContent } from "./domElements"
+
+let mProjectIndex = 0
+let mListIndex = 0
 
 export function setEventListeners() {
     documentListener()
+    addListContentListener()
 }
 
 const documentListener = () => {
@@ -29,29 +34,29 @@ const documentListener = () => {
             window.open("#popup", "_parent")
         } else if (e.target.closest(".project-item-container")) {
             modalContent.innerHTML = ""
-            const itemList = document.querySelectorAll(".project-item-container")
-
-            itemList.forEach(function callback(value, index) {
-              value.addEventListener("click", (event) => {
-                console.log("clicked!")
-
-                  event.preventDefault()
-                  clearItemListContent()
-                  const projectIndex = value.getAttribute("project-id")
-                  const listIndex = value.getAttribute("item-id")
-
-                  //TODO: Why is this not appending properly? This logic executes successive times after each click (1, 2, 3, etc.), because we are ADDING an event listener EVERY time an item is clicked. It's fine for the form submission buttons above since they get cleared.
-              })
-            })
-            // modalContent.appendChild(listItemsContent(projectIndex, listIndex))
-            modalContent.appendChild(listItemsContent(projectIndex, listIndex))
+            modalContent.appendChild(listItemsContent())
             window.open("#popup", "_parent")
-
-
+            populateListItemsContent(mProjectIndex, mListIndex)
         } else if (!e.target.closest(".modal-content")) {
             window.open("#", "_parent")
         }
 })
+}
+
+const addListContentListener = () => {
+    const itemList = document.querySelectorAll(".project-item-container")
+
+     //TODO: We don't want to instantiate this listener multiple times through getting its return value though.
+    itemList.forEach(function callback(value) {
+        value.addEventListener("click", (event) => {
+            event.preventDefault()
+            const projectIndex = value.getAttribute("project-id")
+            const listIndex = value.getAttribute("item-id")
+            mProjectIndex = projectIndex
+            mListIndex = listIndex
+        })
+      })
+
 }
 
 //Form submission reloads page, thus skipping console logs.
