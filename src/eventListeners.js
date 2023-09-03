@@ -11,6 +11,8 @@ import { listItemsContent } from "./domElements"
 
 export function setEventListeners() {
     documentListener()
+    addProjectSubmitButtonListener()
+    addListItemSubmitButtonListener()
 }
 
 const documentListener = () => {
@@ -20,33 +22,25 @@ const documentListener = () => {
         if (e.target.closest("#add-project-button")) {
             modalContent.innerHTML = ""
             modalContent.appendChild(addProjectForm())
-            addProjectSubmitButtonListener()
             window.open("#popup", "_parent")
         } else if  (e.target.closest("#add-list-button")) {
             modalContent.innerHTML = ""
             modalContent.appendChild(addListItemsForm())
-            addListItemSubmitButtonListener()
             window.open("#popup", "_parent")
         } else if (e.target.closest(".project-item-container")) {
             modalContent.innerHTML = ""
             const itemList = document.querySelectorAll(".project-item-container")
 
-          //TODO: listIndex doesn't reset in multiple projects (e.g. second project will continue list index of first)
-                //TODO: Add a -# of item as another attribute, doesn't need to be "id".
-            itemList.forEach(function callback(value) {
+            itemList.forEach(function callback(value, index) {
               value.addEventListener("click", (event) => {
+                console.log("clicked!")
+
                   event.preventDefault()
                   clearItemListContent()
-                  //Each project item container has an ID set to its parent project index (e.g. first project card has item containers 'container-0', second has 'container-1', etc.)
                   const projectIndex = value.getAttribute("project-id")
                   const listIndex = value.getAttribute("item-id")
 
-                //   console.log(projectIndex)
-                //   console.log(listIndex)
-
-                  const allProjectElements = document.querySelectorAll(".projects")
-                  const selectedProject = allProjectElements[projectIndex]
-
+                  //TODO: Why is this not appending properly? This logic executes successive times after each click (1, 2, 3, etc.). We are ADDING an event listener EVERY time an item is clicked.
                   modalContent.appendChild(listItemsContent(projectIndex, listIndex))
                   window.open("#popup", "_parent")
               })
@@ -61,7 +55,6 @@ const documentListener = () => {
 const addProjectSubmitButtonListener = () => {
     const button = document.querySelector("#add-project-submit-button")
 
-    //Todo: Blank list on add (if array is ampty)
     button.addEventListener("click", (event) => {
         event.preventDefault()
         addBlankProjectToLocalStorage()

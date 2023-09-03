@@ -184,9 +184,6 @@ export const listItemsContent = (projectIndex, listIndex) => {
     const project = allProjects[projectIndex]
     const modifiedProject = JSON.parse(project)
     const listItem = modifiedProject.lists[listIndex]
-    //TODO: listIndex doesn't reset in multiple projects (e.g. second project will continue list index of first)
-    console.log("project index is " + projectIndex)
-    console.log("list index is " + listIndex)
     // console.log(listItem)
     // console.log(listItem.title)
 
@@ -200,14 +197,12 @@ export const listItemsContent = (projectIndex, listIndex) => {
     const priority = document.createElement("p")
     const isCompleted = document.createElement("p")
 
-    // projectTitle.innerText = project.title[projectIndex]
+    projectTitle.innerText = project.title
     itemTitle.innerText = listItem.title
     desc.innerText = listItem.description
     dueDate.innerText = listItem.dueDate
     priority.innerText = listItem.priority
     isCompleted.innerText = listItem.isCompleted
-
-    console.log(itemTitle.innerText)
 
     itemDiv.append(projectTitle)
     itemDiv.appendChild(itemTitle)
