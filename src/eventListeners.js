@@ -1,5 +1,7 @@
-import { addBlankProjectToLocalStorage, addProjectToLocalStorage } from "./databaseOps"
+import { addBlankProjectToLocalStorage } from "./databaseOps"
 import { addProjectItemsToLocalStorage } from "./databaseOps"
+import { deleteSingleProject } from "./databaseOps"
+import { deleteAllProjects } from "./databaseOps"
 import { clearProjectCards } from "./domElements"
 import { clearItemListContent } from "./domElements"
 import { populateProjectCards } from "./domElements"
@@ -16,6 +18,7 @@ let mListIndex = 0
 export function setEventListeners() {
     documentListener()
     addListContentListener()
+    deleteSingleProjectButtonListener()
 }
 
 const documentListener = () => {
@@ -72,10 +75,22 @@ const addProjectSubmitButtonListener = () => {
     })
 }
 
+const deleteSingleProjectButtonListener = () => {
+    const button = document.querySelectorAll("#delete-project-button")
+
+    button.forEach(function callback(value, index) {
+        button[index].addEventListener("click", (event) => {
+            event.preventDefault()
+            deleteSingleProject(index)
+        })
+    })
+}
+
 const addListItemSubmitButtonListener = () => {
     const button = document.querySelectorAll("#add-list-submit-button")
 
     button.forEach(function callback(value, index) {
+        console.log("clicked")
         button[index].addEventListener("click", (event) => {
             event.preventDefault()
             addProjectItemsToLocalStorage(index)

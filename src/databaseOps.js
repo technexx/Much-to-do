@@ -5,7 +5,7 @@ export const ListArray = []
 export const ListItemsArray = []
 
 export function testPopulation() {
-    deleteAllLocalObjects()
+    deleteAllProjects()
 
     const itemOne = new ListItem("first title", "first desc", "due now", "normal", false)
     const itemTwo = new ListItem("second title", "second desc", "due later", "low", false)
@@ -71,7 +71,13 @@ export function addProjectItemsToLocalStorage(index) {
     localStorage.setItem(projectKey, JSON.stringify(modifiedProject))
 }
 
-export function deleteAllLocalObjects() {
+export function deleteSingleProject(index) {
+    const keyArray = getProjectKeyArray()
+    console.log("key index is " + keyArray[index])
+    // localStorage.removeItem(keyArray[index])
+}
+
+export function deleteAllProjects() {
     localStorage.clear()
 }
 
