@@ -1,4 +1,6 @@
 import { deleteAllLocalObjects, getProjectsFromLocalStorage } from "./databaseOps"
+import { addListContentListener } from "./eventListeners"
+import { deleteSingleProjectButtonListener } from "./eventListeners"
 import { sub } from "date-fns"
 
 const content = document.querySelector(".content")
@@ -185,6 +187,9 @@ export function populateProjectCards() {
         projectDiv.appendChild(projectButtonsDiv)
         projectContainer.appendChild(projectDiv)
     }
+
+    addListContentListener()
+    deleteSingleProjectButtonListener()
 }
 
 export const populateListItemsContent = (projectIndex, listIndex) => {

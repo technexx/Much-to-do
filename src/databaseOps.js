@@ -73,8 +73,9 @@ export function addProjectItemsToLocalStorage(index) {
 
 export function deleteSingleProject(index) {
     const keyArray = getProjectKeyArray()
-    console.log("key index is " + keyArray[index])
-    // localStorage.removeItem(keyArray[index])
+    console.log("key is " + keyArray[index])
+    console.log("index is " + index)
+    localStorage.removeItem(keyArray[index])
 }
 
 export function deleteAllProjects() {
