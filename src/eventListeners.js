@@ -38,12 +38,17 @@ const documentListener = () => {
         } else if (e.target.closest(".project-item-container")) {
             modalContent.innerHTML = ""
             modalContent.appendChild(listItemsContent())
+            // addListContentListener()
+            deleteSingleProjectButtonListener()
             window.open("#popup", "_parent")
-            // populateListItemsContent(mProjectIndex, mListIndex)
         } else if (!e.target.closest(".modal-content")) {
             window.open("#", "_parent")
         }
+
+        addListContentListener()
+        populateListItemsContent(mProjectIndex, mListIndex)
     })
+
 }
 
 //Form submission reloads page, thus skipping console logs.
@@ -82,11 +87,13 @@ export function addListContentListener() {
 
     itemList.forEach(function callback(value) {
         value.addEventListener("click", (event) => {
+            console.log(value)
+            console.log("clicked")
             event.preventDefault()
             const projectIndex = value.getAttribute("project-id")
             const listIndex = value.getAttribute("item-id")
 
-            populateListItemsContent(mProjectIndex, mListIndex)
+            // populateListItemsContent(mProjectIndex, mListIndex)
 
             mProjectIndex = projectIndex
             mListIndex = listIndex
@@ -96,7 +103,6 @@ export function addListContentListener() {
 
 export function deleteSingleProjectButtonListener() {
     const buttons = document.querySelectorAll("#delete-project-button")
-    console.log("node ist is " + buttons.length)
 
     buttons.forEach(function callback(value, index) {
         buttons[index].addEventListener("click", (event) => {

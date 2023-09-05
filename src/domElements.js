@@ -187,32 +187,6 @@ export function populateProjectCards() {
         projectDiv.appendChild(projectButtonsDiv)
         projectContainer.appendChild(projectDiv)
     }
-
-    addListContentListener()
-    deleteSingleProjectButtonListener()
-}
-
-export const populateListItemsContent = (projectIndex, listIndex) => {
-    const allProjects = getProjectsFromLocalStorage()
-    const project = allProjects[projectIndex]
-
-    const modifiedProject = JSON.parse(project)
-    const listItem = modifiedProject.lists[listIndex]
-
-    const projectTitle = document.querySelector("#project-title-in-item")
-    const itemTitle = document.querySelector("#item-title")
-    const desc = document.querySelector("#item-desc")
-    const dueDate = document.querySelector("#item-dueDate")
-    const priority = document.querySelector("#item-priority")
-    const isCompleted = document.querySelector("#item-isCompleted")
-
-    console.log(modifiedProject.title)
-    projectTitle.innerText = modifiedProject.title
-    itemTitle.innerText = listItem.title
-    desc.innerText = listItem.description
-    dueDate.innerText = listItem.dueDate
-    priority.innerText = listItem.priority
-    isCompleted.innerText = listItem.isCompleted
 }
 
 export const listItemsContent = () => {
@@ -241,6 +215,34 @@ export const listItemsContent = () => {
     itemDiv.appendChild(isCompleted)
 
     return itemDiv
+}
+
+export const populateListItemsContent = (projectIndex, listIndex) => {
+    //Indices and projects/items are all correct.
+    console.log("proj index is " + projectIndex)
+    console.log("list index is " + listIndex)
+
+    const allProjects = getProjectsFromLocalStorage()
+    const project = allProjects[projectIndex]
+
+    const modifiedProject = JSON.parse(project)
+    const listItem = modifiedProject.lists[listIndex]
+
+    //TODO: listItemsContent() needs to be created beforeo or this will be null.
+
+    const projectTitle = document.querySelector("#project-title-in-item")
+    const itemTitle = document.querySelector("#item-title")
+    const desc = document.querySelector("#item-desc")
+    const dueDate = document.querySelector("#item-dueDate")
+    const priority = document.querySelector("#item-priority")
+    const isCompleted = document.querySelector("#item-isCompleted")
+
+    projectTitle.innerText = modifiedProject.title
+    itemTitle.innerText = listItem.title
+    desc.innerText = listItem.description
+    dueDate.innerText = listItem.dueDate
+    priority.innerText = listItem.priority
+    isCompleted.innerText = listItem.isCompleted
 }
 
 export function clearProjectCards() {
