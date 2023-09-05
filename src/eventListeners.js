@@ -46,7 +46,6 @@ const documentListener = () => {
 const addListContentListener = () => {
     const itemList = document.querySelectorAll(".project-item-container")
 
-     //TODO: We don't want to instantiate this listener multiple times through getting its return value though.
     itemList.forEach(function callback(value) {
         value.addEventListener("click", (event) => {
             event.preventDefault()
@@ -56,7 +55,6 @@ const addListContentListener = () => {
             mListIndex = listIndex
         })
       })
-
 }
 
 //Form submission reloads page, thus skipping console logs.

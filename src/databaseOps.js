@@ -43,10 +43,6 @@ function getProjectKeyArray() {
     return array
 }
 
-export function getProjectIndex() {
-    
-}
-
 export function addProjectItemsToLocalStorage(index) {
     const title = document.querySelector("#add-list-title-input")
     const desc = document.querySelector("#add-list-desc-input")

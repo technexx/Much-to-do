@@ -76,7 +76,7 @@ export const addListItemsForm = () => {
     title.id = "add-list-title-input"
     title.type = "text"
     title.minLength = "1"
-    title.maxLength = "20"
+    title.maxLength = "40"
     title.placeholder = "Title"
     title.required = "true"
 
@@ -84,7 +84,7 @@ export const addListItemsForm = () => {
     desc.id = "add-list-desc-input"
     desc.type = "text"
     desc.minLength = "1"
-    desc.maxLength = "40"
+    desc.maxLength = "80"
     desc.placeholder = "Description"
     desc.required = "true"
 
@@ -141,9 +141,19 @@ export function populateProjectCards() {
         const projectDiv = document.createElement("div")
         projectDiv.classList.add("projects")
 
+        const projectButtonsDiv = document.createElement("div")
+        projectButtonsDiv.classList.add("project-buttons")
+
+        const deleteProjectButton = document.createElement("button")
+        deleteProjectButton.setAttribute("id", "delete-project-button")
+        deleteProjectButton.innerHTML = "<img src='../src/images/delete.svg'/>"
+
         const addListButton = document.createElement("button")
         addListButton.setAttribute("id", "add-list-button")
-        addListButton.innerHTML = "<img src='../src/images/pencil.svg'/>"     
+        addListButton.innerHTML = "<img src='../src/images/pencil.svg'/>"
+
+        projectButtonsDiv.appendChild(deleteProjectButton)
+        projectButtonsDiv.appendChild(addListButton)
 
         const titleDiv = document.createElement("div")
         const listDiv = document.createElement("div")
@@ -152,7 +162,7 @@ export function populateProjectCards() {
 
         const project = allProjects[i]
         const modifiedProject = JSON.parse(project)
-
+ 
         titleDiv.innerText = modifiedProject.title
         projectDiv.appendChild(titleDiv)
 
@@ -172,7 +182,7 @@ export function populateProjectCards() {
             }
         }
 
-        projectDiv.appendChild(addListButton)
+        projectDiv.appendChild(projectButtonsDiv)
         projectContainer.appendChild(projectDiv)
     }
 }

@@ -79,16 +79,6 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
 }
 
-.project-item-container {
-    font-size: 25px;
-    border: 2px solid yellow;
-}
-
-.project-item-list {
-    border: 2px solid green;
-    font-size: 20px;
-}
-
 .projects {
     display: flex;
     flex-direction: column;
@@ -102,6 +92,32 @@
     margin-bottom: 10px;
 }
 
+.project-item-container {
+    font-size: 25px;
+    border: 2px solid yellow;
+}
+
+.project-item-list {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid green;
+    font-size: 20px;
+}
+
+.project-item-list > * {
+    font-size: 24px;
+}
+
+#project-title-in-item {
+    align-self: center;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+#item-title {
+    font-size: 30px;
+}
+
 /*Height set to 100% so that we can set auto top-margin to align Submit button to bottom.*/
 #add-list-form {
     height: 100%;
@@ -109,7 +125,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap:10px
+    gap: 10px
 }
 
 #add-list-form > * {
@@ -121,12 +137,23 @@
     margin-top: auto
 }
 
-/*Absolute position only works relative to parent if parent position also set*/
-#add-list-button {
-    width: 30px;
-    background-color: white;
+.project-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
     margin-top: auto;
-    margin-left: auto;
+}
+
+#delete-project-button {
+    width: 40px;
+    background-color: white;
+    margin-left: 2px;
+}
+
+#add-list-button {
+    width: 40px;
+    background-color: white;
+    margin-right: 2px;
 }
 
 .project-item-array {
