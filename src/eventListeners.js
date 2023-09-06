@@ -17,8 +17,8 @@ let mListIndex = 0
 
 export function setEventListeners() {
     documentListener()
-    // addListContentListener()
-    // deleteSingleProjectButtonListener()
+    addListContentListener()
+    deleteSingleProjectButtonListener()
 }
 
 const documentListener = () => {
@@ -38,17 +38,15 @@ const documentListener = () => {
         } else if (e.target.closest(".project-item-container")) {
             modalContent.innerHTML = ""
             modalContent.appendChild(listItemsContent())
-            // addListContentListener()
-            deleteSingleProjectButtonListener()
+            addListContentListener()
+            populateListItemsContent(mProjectIndex, mListIndex)
             window.open("#popup", "_parent")
         } else if (!e.target.closest(".modal-content")) {
+            modalContent.innerHTML = ""
             window.open("#", "_parent")
         }
 
-        addListContentListener()
-        populateListItemsContent(mProjectIndex, mListIndex)
     })
-
 }
 
 //Form submission reloads page, thus skipping console logs.
@@ -85,18 +83,18 @@ const addListItemSubmitButtonListener = () => {
 export function addListContentListener() {
     const itemList = document.querySelectorAll(".project-item-container")
 
+    //This adds another listener on each item every time we run the function.
     itemList.forEach(function callback(value) {
         value.addEventListener("click", (event) => {
-            console.log(value)
             console.log("clicked")
             event.preventDefault()
             const projectIndex = value.getAttribute("project-id")
             const listIndex = value.getAttribute("item-id")
 
-            // populateListItemsContent(mProjectIndex, mListIndex)
-
             mProjectIndex = projectIndex
             mListIndex = listIndex
+
+            // populateListItemsContent(mProjectIndex, mListIndex)
         })
       })
 }

@@ -237,6 +237,8 @@ export const populateListItemsContent = (projectIndex, listIndex) => {
     const priority = document.querySelector("#item-priority")
     const isCompleted = document.querySelector("#item-isCompleted")
 
+    console.log(projectTitle)
+
     projectTitle.innerText = modifiedProject.title
     itemTitle.innerText = listItem.title
     desc.innerText = listItem.description
