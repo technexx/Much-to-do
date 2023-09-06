@@ -38,9 +38,11 @@ const documentListener = () => {
         } else if (e.target.closest(".project-item-container")) {
             modalContent.innerHTML = ""
             modalContent.appendChild(listItemsContent())
-            addListContentListener()
+            // addListContentListener()
             populateListItemsContent(mProjectIndex, mListIndex)
             window.open("#popup", "_parent")
+        } else if (e.target.closest("#delete-project-button")) {
+            // deleteSingleProjectButtonListener()
         } else if (!e.target.closest(".modal-content")) {
             modalContent.innerHTML = ""
             window.open("#", "_parent")
@@ -59,6 +61,7 @@ const addProjectSubmitButtonListener = () => {
 
         clearProjectCards()
         populateProjectCards()
+        addListContentListener()
 
         dismissPopup()
     })
@@ -83,18 +86,14 @@ const addListItemSubmitButtonListener = () => {
 export function addListContentListener() {
     const itemList = document.querySelectorAll(".project-item-container")
 
-    //This adds another listener on each item every time we run the function.
     itemList.forEach(function callback(value) {
         value.addEventListener("click", (event) => {
-            console.log("clicked")
             event.preventDefault()
             const projectIndex = value.getAttribute("project-id")
             const listIndex = value.getAttribute("item-id")
 
             mProjectIndex = projectIndex
             mListIndex = listIndex
-
-            // populateListItemsContent(mProjectIndex, mListIndex)
         })
       })
 }
@@ -108,6 +107,8 @@ export function deleteSingleProjectButtonListener() {
             deleteSingleProject(index)
             clearProjectCards()
             populateProjectCards()
+
+            console.log("delete at index " + index)
         })
     })
 }

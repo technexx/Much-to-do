@@ -187,6 +187,9 @@ export function populateProjectCards() {
         projectDiv.appendChild(projectButtonsDiv)
         projectContainer.appendChild(projectDiv)
     }
+
+    deleteSingleProjectButtonListener()
+    addListContentListener()
 }
 
 export const listItemsContent = () => {
@@ -218,17 +221,11 @@ export const listItemsContent = () => {
 }
 
 export const populateListItemsContent = (projectIndex, listIndex) => {
-    //Indices and projects/items are all correct.
-    console.log("proj index is " + projectIndex)
-    console.log("list index is " + listIndex)
-
     const allProjects = getProjectsFromLocalStorage()
     const project = allProjects[projectIndex]
 
     const modifiedProject = JSON.parse(project)
     const listItem = modifiedProject.lists[listIndex]
-
-    //TODO: listItemsContent() needs to be created beforeo or this will be null.
 
     const projectTitle = document.querySelector("#project-title-in-item")
     const itemTitle = document.querySelector("#item-title")
@@ -236,8 +233,6 @@ export const populateListItemsContent = (projectIndex, listIndex) => {
     const dueDate = document.querySelector("#item-dueDate")
     const priority = document.querySelector("#item-priority")
     const isCompleted = document.querySelector("#item-isCompleted")
-
-    console.log(projectTitle)
 
     projectTitle.innerText = modifiedProject.title
     itemTitle.innerText = listItem.title
