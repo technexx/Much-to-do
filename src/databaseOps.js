@@ -18,7 +18,6 @@ export function testPopulation() {
 //If key is the same (e.g. project-x already exists), it will overwrite.
 export function addBlankProjectToLocalStorage() {
     // deleteAllProjects()
-    console.log(localStorage)
     const numberOfCurrentProject = getProjectsFromLocalStorage().length
 
     const content = document.querySelector("#add-project-title-input")
@@ -47,6 +46,7 @@ function getProjectKeyArray() {
 }
 
 export function addProjectItemsToLocalStorage(index) {
+    console.log("add at index " + index)
     const title = document.querySelector("#add-list-title-input")
     const desc = document.querySelector("#add-list-desc-input")
     const dueDate = document.querySelector("#add-list-due-date")

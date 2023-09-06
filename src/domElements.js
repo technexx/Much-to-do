@@ -1,5 +1,5 @@
-import { deleteAllLocalObjects, getProjectsFromLocalStorage } from "./databaseOps"
-import { addListContentListener } from "./eventListeners"
+import { deleteAllProjects, getProjectsFromLocalStorage } from "./databaseOps"
+import { addListItemListener, listContentListener } from "./eventListeners"
 import { deleteSingleProjectButtonListener } from "./eventListeners"
 import { sub } from "date-fns"
 
@@ -135,7 +135,7 @@ const projectCardContainer = () => {
 }
 
 export function populateProjectCards() {
-    // deleteAllLocalObjects()
+    // deleteAllProjects()
     const projectContainer = document.querySelector(".project-container")
     const allProjects = getProjectsFromLocalStorage()
 
@@ -188,8 +188,10 @@ export function populateProjectCards() {
         projectContainer.appendChild(projectDiv)
     }
 
+    //Listeners within Projects re-attached here every time Projects update.
     deleteSingleProjectButtonListener()
-    addListContentListener()
+    listContentListener()
+    addListItemListener()
 }
 
 export const listItemsContent = () => {

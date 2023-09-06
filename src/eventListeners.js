@@ -17,7 +17,8 @@ let mListIndex = 0
 
 export function setEventListeners() {
     documentListener()
-    addListContentListener()
+    listContentListener()
+    addListItemListener()
     deleteSingleProjectButtonListener()
 }
 
@@ -38,11 +39,9 @@ const documentListener = () => {
         } else if (e.target.closest(".project-item-container")) {
             modalContent.innerHTML = ""
             modalContent.appendChild(listItemsContent())
-            // addListContentListener()
             populateListItemsContent(mProjectIndex, mListIndex)
             window.open("#popup", "_parent")
         } else if (e.target.closest("#delete-project-button")) {
-            // deleteSingleProjectButtonListener()
         } else if (!e.target.closest(".modal-content")) {
             modalContent.innerHTML = ""
             window.open("#", "_parent")
@@ -61,8 +60,6 @@ const addProjectSubmitButtonListener = () => {
 
         clearProjectCards()
         populateProjectCards()
-        addListContentListener()
-
         dismissPopup()
     })
 }
@@ -73,7 +70,8 @@ const addListItemSubmitButtonListener = () => {
     button.forEach(function callback(value, index) {
         button[index].addEventListener("click", (event) => {
             event.preventDefault()
-            addProjectItemsToLocalStorage(index)
+            //TODO: Need index of project.
+            addProjectItemsToLocalStorage(mProjectIndex)
 
             clearProjectCards()
             populateProjectCards()
@@ -83,7 +81,7 @@ const addListItemSubmitButtonListener = () => {
     })
 }
 
-export function addListContentListener() {
+export function listContentListener() {
     const itemList = document.querySelectorAll(".project-item-container")
 
     itemList.forEach(function callback(value) {
@@ -98,6 +96,18 @@ export function addListContentListener() {
       })
 }
 
+export function addListItemListener() {
+    const listButtons = document.querySelectorAll("#add-list-button")
+
+    listButtons.forEach(function callback(value, index) {
+        listButtons[index].addEventListener("click", (event) => {
+        console.log("add at position " + index)
+        mProjectIndex = index            
+        })
+
+    })
+}
+
 export function deleteSingleProjectButtonListener() {
     const buttons = document.querySelectorAll("#delete-project-button")
 
@@ -107,8 +117,6 @@ export function deleteSingleProjectButtonListener() {
             deleteSingleProject(index)
             clearProjectCards()
             populateProjectCards()
-
-            console.log("delete at index " + index)
         })
     })
 }
