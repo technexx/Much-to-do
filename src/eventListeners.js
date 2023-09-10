@@ -1,5 +1,5 @@
 import { addBlankProjectToLocalStorage } from "./databaseOps"
-import { addProjectItemsToLocalStorage } from "./databaseOps"
+import { addOrEditProjectItemsToLocalStorage } from "./databaseOps"
 import { deleteSingleProject } from "./databaseOps"
 import { deleteAllProjects } from "./databaseOps"
 import { clearProjectCards } from "./domElements"
@@ -70,8 +70,7 @@ const addListItemSubmitButtonListener = () => {
     button.forEach(function callback(value, index) {
         button[index].addEventListener("click", (event) => {
             event.preventDefault()
-            //TODO: Need index of project.
-            addProjectItemsToLocalStorage(mProjectIndex)
+            addOrEditProjectItemsToLocalStorage(true, mProjectIndex, mListIndex)
 
             clearProjectCards()
             populateProjectCards()

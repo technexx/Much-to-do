@@ -26,27 +26,8 @@ export function addBlankProjectToLocalStorage() {
     localStorage.setItem(("project-" + numberOfCurrentProject), JSON.stringify(project))
 }
 
-export function getProjectsFromLocalStorage() {
-    let projects = []
-    for (let i=0; i<localStorage.length; i++) {
-        if (localStorage.key(i).includes("project-")) {
-            projects.push(localStorage.getItem(localStorage.key(i)))
-        }
-    }
-    return projects
-}
-
-function getProjectKeyArray() {
-    let array = []
-    for (let i=0; i<localStorage.length; i++) {
-        if (localStorage.key(i).includes("project-")) {
-            array.push(localStorage.key(i))
-        }
-    }
-    return array
-}
-
-export function addProjectItemsToLocalStorage(projectIndex) {
+//TODO: Can also try inheritence.
+export function addOrEditProjectItemsToLocalStorage(adding, projectIndex, listIndex) {  
     const title = document.querySelector("#add-list-title-input")
     const desc = document.querySelector("#add-list-desc-input")
     const dueDate = document.querySelector("#add-list-due-date")
@@ -54,7 +35,7 @@ export function addProjectItemsToLocalStorage(projectIndex) {
     const priority = prioritySelector.options[prioritySelector.selectedIndex].text
 
     const projectKeyArray = getProjectKeyArray()
-    const projectKey = projectKeyArray[index]
+    const projectKey = projectKeyArray[projectIndex]
     const project = localStorage.getItem(projectKey)
     const parsedProject = JSON.parse(project)
 
@@ -62,7 +43,12 @@ export function addProjectItemsToLocalStorage(projectIndex) {
 
     //Pushes new item into array.
     const newListItem = new ListItem(title.value, desc.value, dueDate.value, priority, false)
-    listArray.push(newListItem)
+
+    if (adding) {    
+        listArray.push(newListItem)
+    } else {
+        listArray.splice(listIndex, 1, newListItem)
+    }
 
     const modifiedProject = new Project(parsedProject.title, listArray)
     localStorage.setItem(projectKey, JSON.stringify(modifiedProject))
@@ -90,8 +76,6 @@ export function deleteSingleItem(projectIndex, listIndex) {
     localStorage.setItem(projectKey, JSON.stringify(modifiedProject))
 }
 
-//TODO: Edit for items.
-
 //Adds current List object in Project to array.
 function listArrayFromParsedProject(parsedProject) {
     let listArray = []
@@ -101,6 +85,26 @@ function listArrayFromParsedProject(parsedProject) {
         }
     }
     return listArray
+}
+
+export function getProjectsFromLocalStorage() {
+    let projects = []
+    for (let i=0; i<localStorage.length; i++) {
+        if (localStorage.key(i).includes("project-")) {
+            projects.push(localStorage.getItem(localStorage.key(i)))
+        }
+    }
+    return projects
+}
+
+function getProjectKeyArray() {
+    let array = []
+    for (let i=0; i<localStorage.length; i++) {
+        if (localStorage.key(i).includes("project-")) {
+            array.push(localStorage.key(i))
+        }
+    }
+    return array
 }
 
 class Project {
