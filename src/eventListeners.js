@@ -68,8 +68,8 @@ const addListItemSubmitButtonListener = () => {
 
     button.forEach(function callback(value, index) {
         button[index].addEventListener("click", (event) => {
-            event.preventDefault()()
-            setProjectWithModifiedListInLocalStorage(adding)
+            event.preventDefault()
+            setProjectWithModifiedListInLocalStorage("adding")
 
             clearProjectCards()
             populateProjectCards()

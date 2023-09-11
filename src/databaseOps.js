@@ -65,7 +65,7 @@ const listArrayWithAddedItem = () => {
     const listArray = listArrayFromParsedProject(parsedProject)
     const item = listItemObjectFromInputForm()
 
-    listArray.push(item)
+    return listArray.push(item)
 }
 
 const listArrayWithEditedItem = (listIndex) => {
@@ -73,32 +73,10 @@ const listArrayWithEditedItem = (listIndex) => {
     const listArray = listArrayFromParsedProject(parsedProject)
     const item = listItemObjectFromInputForm()
 
-    listArray.splice(listIndex, 1, item)
+    return listArray.splice(listIndex, 1, item)
 }
 
-export function setProjectWithModifiedListInLocalStorage (adding) {
-    let listArray = []
-    if (adding) {
-        listArray = listArrayWithAddedItem()
-    } else {
-        listArray = listArrayWithEditedItem()
-    }
-    
-    const modifiedProject = new Project(parsedProject.title, listArray)
-    localStorage.setItem(projectKey, JSON.stringify(modifiedProject))
-}
-
-const listItemObjectFromInputForm = () => {  
-    const title = document.querySelector("#add-list-title-input")
-    const desc = document.querySelector("#add-list-desc-input")
-    const dueDate = document.querySelector("#add-list-due-date")
-    const prioritySelector = document.querySelector("#priority-selector")
-    const priority = prioritySelector.options[prioritySelector.selectedIndex].text
-
-    return new ListItem(title.value, desc.value, dueDate.value, priority, false)
-}
-
-const parsedProject = () => {
+parsedProject = () => {
     const project = localStorage.getItem(projectKey)
     return JSON.parse(project)
 }
@@ -116,6 +94,29 @@ const projectKeyArray = () => {
         }
     }
     return array
+}
+
+export function setProjectWithModifiedListInLocalStorage (operation) {
+    let listArray = []
+    if (operation === "adding") {
+        listArray = listArrayWithAddedItem()
+    }
+    if (operation === "editing") {
+        listArray = listArrayWithEditedItem()
+    }
+    
+    const modifiedProject = new Project(parsedProject.title, listArray)
+    localStorage.setItem(projectKey, JSON.stringify(modifiedProject))
+}
+
+const listItemObjectFromInputForm = () => {  
+    const title = document.querySelector("#add-list-title-input")
+    const desc = document.querySelector("#add-list-desc-input")
+    const dueDate = document.querySelector("#add-list-due-date")
+    const prioritySelector = document.querySelector("#priority-selector")
+    const priority = prioritySelector.options[prioritySelector.selectedIndex].text
+
+    return new ListItem(title.value, desc.value, dueDate.value, priority, false)
 }
 
 const listArrayFromParsedProject = () => {
