@@ -1,16 +1,14 @@
 import { addBlankProjectToLocalStorage } from "./databaseOps"
-import { addOrEditProjectItemsToLocalStorage } from "./databaseOps"
 import { deleteSingleProject } from "./databaseOps"
 import { deleteAllProjects } from "./databaseOps"
 import { clearProjectCards } from "./domElements"
-import { clearItemListContent } from "./domElements"
 import { populateProjectCards } from "./domElements"
-import { populateProjectListOfItems } from "./domElements"
 import { dismissPopup } from "./domElements"
 import { addProjectForm } from "./domElements"
 import { addListItemsForm } from "./domElements"
 import { listItemsContent } from "./domElements"
 import { populateListItemsContent } from "./domElements"
+import { setProjectWithModifiedListInLocalStorage } from "./databaseOps"
 
 let mProjectIndex = 0
 let mListIndex = 0
@@ -38,6 +36,7 @@ const documentListener = () => {
             window.open("#popup", "_parent")
         } else if (e.target.closest(".project-item-container")) {
             modalContent.innerHTML = ""
+            //TODO: Bring up item form, same as if adding item. 
             modalContent.appendChild(listItemsContent())
             populateListItemsContent(mProjectIndex, mListIndex)
             window.open("#popup", "_parent")
@@ -69,8 +68,8 @@ const addListItemSubmitButtonListener = () => {
 
     button.forEach(function callback(value, index) {
         button[index].addEventListener("click", (event) => {
-            event.preventDefault()
-            addOrEditProjectItemsToLocalStorage(true, mProjectIndex, mListIndex)
+            event.preventDefault()()
+            setProjectWithModifiedListInLocalStorage(adding)
 
             clearProjectCards()
             populateProjectCards()

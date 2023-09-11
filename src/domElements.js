@@ -1,4 +1,4 @@
-import { deleteAllProjects, getProjectsFromLocalStorage } from "./databaseOps"
+import { deleteAllProjects, projectsFromLocalStorage } from "./databaseOps"
 import { addListItemListener, listContentListener } from "./eventListeners"
 import { deleteSingleProjectButtonListener } from "./eventListeners"
 import { sub } from "date-fns"
@@ -137,7 +137,7 @@ const projectCardContainer = () => {
 export function populateProjectCards() {
     // deleteAllProjects()
     const projectContainer = document.querySelector(".project-container")
-    const allProjects = getProjectsFromLocalStorage()
+    const allProjects = projectsFromLocalStorage()
 
     for (let i=0; i<allProjects.length; i++) {
         const projectDiv = document.createElement("div")
@@ -223,7 +223,7 @@ export const listItemsContent = () => {
 }
 
 export const populateListItemsContent = (projectIndex, listIndex) => {
-    const allProjects = getProjectsFromLocalStorage()
+    const allProjects = projectsFromLocalStorage()
     const project = allProjects[projectIndex]
 
     const modifiedProject = JSON.parse(project)
