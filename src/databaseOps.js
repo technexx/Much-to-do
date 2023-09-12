@@ -66,24 +66,15 @@ const parsedProject = (projectIndex) => {
     return JSON.parse(project)
 }
 
-export function addItemToProjectStorage(projectIndex) {
+export function putItemInLocalStorage(operation, projectIndex, listIndex) {
     const project = parsedProject(projectIndex)
     const listArray = listArrayFromParsedProject(project)
     const item = listItemObjectFromInputForm()
-    listArray.push(item)
+
+    if (operation === "add") listArray.push(item)
+    if (operation === "edit") listArray.splice(listIndex, 1, item)
 
     const modifiedProject = new Project(project.title, listArray)
-    localStorage.setItem(projectKey(projectIndex), JSON.stringify(modifiedProject))
-}
-
-export function editItemFromProjectStorage(projectIndex, listIndex) {
-    const parsedProject = parsedProject(projectIndex)
-    const listArray = listArrayFromParsedProject(parsedProject)
-    const item = listItemObjectFromInputForm()
-
-    listArray.splice(listIndex, 1, item)
-
-    const modifiedProject = new Project(parsedProject.title, listArray)
     localStorage.setItem(projectKey(projectIndex), JSON.stringify(modifiedProject))
 }
 
