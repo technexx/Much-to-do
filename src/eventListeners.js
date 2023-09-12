@@ -8,7 +8,8 @@ import { addProjectForm } from "./domElements"
 import { addListItemsForm } from "./domElements"
 import { listItemsContent } from "./domElements"
 import { populateListItemsContent } from "./domElements"
-import { setProjectWithModifiedListInLocalStorage } from "./databaseOps"
+import { addItemToProjectStorage } from "./databaseOps"
+import { editItemFromProjectStorage } from "./databaseOps"
 
 let mProjectIndex = 0
 let mListIndex = 0
@@ -69,7 +70,7 @@ const addListItemSubmitButtonListener = () => {
     button.forEach(function callback(value, index) {
         button[index].addEventListener("click", (event) => {
             event.preventDefault()
-            setProjectWithModifiedListInLocalStorage("adding")
+            addItemToProjectStorage(mProjectIndex)
 
             clearProjectCards()
             populateProjectCards()

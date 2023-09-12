@@ -38,52 +38,13 @@ export function deleteAllProjects() {
 export function deleteSingleItem(projectIndex, listIndex) {
     const projectKeyArray = projectKeyArray()
     const projectKey = projectKeyArray[projectIndex]
-    const project = localStorage.getItem(projectKey)
-    const parsedProject = JSON.parse(project)
+    const parsedProject = parsedProject(projectIndex)
 
     const listArray = listArrayFromParsedProject(parsedProject)
     listArray.splice(listIndex, 1, 0)
 
     const modifiedProject = new Project(parsedProject.title, listArray)
     localStorage.setItem(projectKey, JSON.stringify(modifiedProject))
-}
-
-export function addItemToProjectStorage() {
-    const parsedProject = parsedProject(projectIndex)
-    const listArray = listArrayFromParsedProject(parsedProject)
-    const item = listItemObjectFromInputForm()
-
-    listArray.push(item)
-    // listArray.splice(listIndex, 1, item)
-
-    const modifiedProject = new Project(parsedProject.title, listArray)
-    localStorage.setItem(projectKey, JSON.stringify(modifiedProject))
-}
-
-const listArrayWithAddedItem = () => {
-    const parsedProject = parsedProject(projectIndex)
-    const listArray = listArrayFromParsedProject(parsedProject)
-    const item = listItemObjectFromInputForm()
-
-    return listArray.push(item)
-}
-
-const listArrayWithEditedItem = (listIndex) => {
-    const parsedProject = parsedProject(projectIndex)
-    const listArray = listArrayFromParsedProject(parsedProject)
-    const item = listItemObjectFromInputForm()
-
-    return listArray.splice(listIndex, 1, item)
-}
-
-parsedProject = () => {
-    const project = localStorage.getItem(projectKey)
-    return JSON.parse(project)
-}
-
-const projectKey = (projectIndex) => {
-    projectKeyArray = projectKeyArray()
-    return projectKeyArray[projectIndex]
 }
 
 const projectKeyArray = () => {
@@ -95,18 +56,35 @@ const projectKeyArray = () => {
     }
     return array
 }
+const projectKey = (projectIndex) => {
+    const key = projectKeyArray()
+    return key[projectIndex]
+}
 
-export function setProjectWithModifiedListInLocalStorage (operation) {
-    let listArray = []
-    if (operation === "adding") {
-        listArray = listArrayWithAddedItem()
-    }
-    if (operation === "editing") {
-        listArray = listArrayWithEditedItem()
-    }
-    
+const parsedProject = (projectIndex) => {
+    const project = localStorage.getItem(projectKey(projectIndex))
+    return JSON.parse(project)
+}
+
+export function addItemToProjectStorage(projectIndex) {
+    const project = parsedProject(projectIndex)
+    const listArray = listArrayFromParsedProject(project)
+    const item = listItemObjectFromInputForm()
+    listArray.push(item)
+
+    const modifiedProject = new Project(project.title, listArray)
+    localStorage.setItem(projectKey(projectIndex), JSON.stringify(modifiedProject))
+}
+
+export function editItemFromProjectStorage(projectIndex, listIndex) {
+    const parsedProject = parsedProject(projectIndex)
+    const listArray = listArrayFromParsedProject(parsedProject)
+    const item = listItemObjectFromInputForm()
+
+    listArray.splice(listIndex, 1, item)
+
     const modifiedProject = new Project(parsedProject.title, listArray)
-    localStorage.setItem(projectKey, JSON.stringify(modifiedProject))
+    localStorage.setItem(projectKey(projectIndex), JSON.stringify(modifiedProject))
 }
 
 const listItemObjectFromInputForm = () => {  
@@ -119,11 +97,11 @@ const listItemObjectFromInputForm = () => {
     return new ListItem(title.value, desc.value, dueDate.value, priority, false)
 }
 
-const listArrayFromParsedProject = () => {
+const listArrayFromParsedProject = (project) => {
     let listArray = []
-    if (parsedProject.lists !== "") {
-        for (let i=0; i<parsedProject.lists.length; i++) {
-            listArray.push(parsedProject.lists[i])
+    if (project.lists !== "") {
+        for (let i=0; i<project.lists.length; i++) {
+            listArray.push(project.lists[i])
         }
     }
     return listArray
