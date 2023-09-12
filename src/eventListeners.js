@@ -33,12 +33,13 @@ const documentListener = () => {
         } else if  (e.target.closest("#add-list-button")) {
             modalContent.innerHTML = ""
             modalContent.appendChild(addListItemsForm())
-            addListItemSubmitButtonListener()
+            addListItemSubmitButtonListener("add")
             window.open("#popup", "_parent")
         } else if (e.target.closest(".project-item-container")) {
             modalContent.innerHTML = ""
             modalContent.appendChild(addListItemsForm())
             populateListItemForm(mProjectIndex, mListIndex)
+            addListItemSubmitButtonListener("edit")
             // populateListItemsContent(mProjectIndex, mListIndex)
             window.open("#popup", "_parent")
         } else if (e.target.closest("#delete-project-button")) {
@@ -64,13 +65,14 @@ const addProjectSubmitButtonListener = () => {
     })
 }
 
-const addListItemSubmitButtonListener = () => {
+//TODO: Submit should switch add/edit as needed.
+const addListItemSubmitButtonListener = (operation) => {
     const button = document.querySelectorAll("#add-list-submit-button")
 
     button.forEach(function callback(value, index) {
         button[index].addEventListener("click", (event) => {
             event.preventDefault()
-            putItemInLocalStorage("add", mProjectIndex, mListIndex)
+            putItemInLocalStorage(operation, mProjectIndex, mListIndex)
 
             clearProjectCards()
             populateProjectCards()
