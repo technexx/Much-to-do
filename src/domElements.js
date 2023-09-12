@@ -128,6 +128,31 @@ export const addListItemsForm = () => {
     return listItemForm
 }
 
+export function populateListItemForm(projectIndex, listIndex) {
+    const allProjects = projectsFromLocalStorage()
+    const project = allProjects[projectIndex]
+
+    const modifiedProject = JSON.parse(project)
+    const listItem = modifiedProject.lists[listIndex]
+
+    const title = document.querySelector("#add-list-title-input")
+    const desc = document.querySelector("#add-list-desc-input")
+    const dueDate = document.querySelector("#add-list-due-date")
+    const prioritySelector = document.querySelector("#priority-selector")
+    console.log(prioritySelector)
+
+    title.value = listItem.title
+    desc.value = listItem.description
+    dueDate.value = listItem.dueDate
+
+    console.log(listItem)
+
+    let priorityIndex = 0
+    if (listItem.priority === "normal") priorityIndex = 1
+    if (listItem.priority === "high") priorityIndex = 2 
+    prioritySelector.selectedIndex = priorityIndex
+}
+
 const projectCardContainer = () => {
     const div = document.createElement("div")
     div.classList.add("project-container")

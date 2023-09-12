@@ -9,6 +9,7 @@ import { addListItemsForm } from "./domElements"
 import { listItemsContent } from "./domElements"
 import { populateListItemsContent } from "./domElements"
 import { putItemInLocalStorage } from "./databaseOps"
+import { populateListItemForm } from "./domElements"
 
 let mProjectIndex = 0
 let mListIndex = 0
@@ -36,9 +37,9 @@ const documentListener = () => {
             window.open("#popup", "_parent")
         } else if (e.target.closest(".project-item-container")) {
             modalContent.innerHTML = ""
-            //TODO: Bring up item form, same as if adding item. 
-            modalContent.appendChild(listItemsContent())
-            populateListItemsContent(mProjectIndex, mListIndex)
+            modalContent.appendChild(addListItemsForm())
+            populateListItemForm(mProjectIndex, mListIndex)
+            // populateListItemsContent(mProjectIndex, mListIndex)
             window.open("#popup", "_parent")
         } else if (e.target.closest("#delete-project-button")) {
         } else if (!e.target.closest(".modal-content")) {
@@ -99,7 +100,6 @@ export function addListItemListener() {
 
     listButtons.forEach(function callback(value, index) {
         listButtons[index].addEventListener("click", (event) => {
-        console.log("add at position " + index)
         mProjectIndex = index            
         })
 
