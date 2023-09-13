@@ -13,7 +13,6 @@ export function testPopulation() {
 
     const project = new Project("Test Project", [itemOne, itemTwo])
     localStorage.setItem(("project-" + 1), JSON.stringify(project))
-    console.log(project)
 }
 
 //If key is the same (e.g. project-x already exists), it will overwrite.

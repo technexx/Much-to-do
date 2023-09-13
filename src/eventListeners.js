@@ -37,12 +37,19 @@ const documentListener = () => {
             window.open("#popup", "_parent")
         } else if (e.target.closest(".project-item-container")) {
             modalContent.innerHTML = ""
+            // modalContent.appendChild(addListItemsForm())
+            // populateListItemForm(mProjectIndex, mListIndex)
+            // addListItemSubmitButtonListener("edit")
+            modalContent.appendChild(listItemsContent())
+            populateListItemsContent(mProjectIndex, mListIndex)
+            // editListItemListener()
+            window.open("#popup", "_parent")
+        } else if (e.target.closest("#delete-project-button")) {
+        } else if (e.target.closest("#edit-item-button")) {
+            modalContent.innerHTML = ""
             modalContent.appendChild(addListItemsForm())
             populateListItemForm(mProjectIndex, mListIndex)
             addListItemSubmitButtonListener("edit")
-            // populateListItemsContent(mProjectIndex, mListIndex)
-            window.open("#popup", "_parent")
-        } else if (e.target.closest("#delete-project-button")) {
         } else if (!e.target.closest(".modal-content")) {
             modalContent.innerHTML = ""
             window.open("#", "_parent")
@@ -65,7 +72,6 @@ const addProjectSubmitButtonListener = () => {
     })
 }
 
-//TODO: Submit should switch add/edit as needed.
 const addListItemSubmitButtonListener = (operation) => {
     const button = document.querySelectorAll("#add-list-submit-button")
 
@@ -101,12 +107,20 @@ export function addListItemListener() {
     const listButtons = document.querySelectorAll("#add-list-button")
 
     listButtons.forEach(function callback(value, index) {
-        listButtons[index].addEventListener("click", (event) => {
+        listButtons[index].addEventListener("click", () => {
         mProjectIndex = index            
         })
 
     })
 }
+
+// export function editListItemListener() {
+//     const editButton = document.querySelector("#edit-item-button")
+//     editButton.addEventListener("click", () => {
+//         console.log("clicked")
+//     })
+
+// }
 
 export function deleteSingleProjectButtonListener() {
     const buttons = document.querySelectorAll("#delete-project-button")

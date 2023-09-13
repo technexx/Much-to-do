@@ -84,6 +84,7 @@
     flex-direction: column;
     border: 2px solid blue;
     height: 250px;
+    overflow:auto
 }
 
 .project-title {

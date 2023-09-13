@@ -139,13 +139,10 @@ export function populateListItemForm(projectIndex, listIndex) {
     const desc = document.querySelector("#add-list-desc-input")
     const dueDate = document.querySelector("#add-list-due-date")
     const prioritySelector = document.querySelector("#priority-selector")
-    console.log(prioritySelector)
 
     title.value = listItem.title
     desc.value = listItem.description
     dueDate.value = listItem.dueDate
-
-    console.log(listItem)
 
     let priorityIndex = 0
     if (listItem.priority === "normal") priorityIndex = 1
@@ -229,6 +226,9 @@ export const listItemsContent = () => {
     const dueDate = document.createElement("p")
     const priority = document.createElement("p")
     const isCompleted = document.createElement("p")
+    const editButton = document.createElement("button")
+    editButton.innerHTML = "<img src='../src/images/pencil.svg'/>"
+    editButton.style.width = "40px"
 
     projectTitle.setAttribute("id", "project-title-in-item")
     itemTitle.setAttribute("id", "item-title")
@@ -236,6 +236,7 @@ export const listItemsContent = () => {
     dueDate.setAttribute("id", "item-dueDate")
     priority.setAttribute("id", "item-priority")
     isCompleted.setAttribute("id", "item-isCompleted")
+    editButton.setAttribute("id", "edit-item-button")
 
     itemDiv.append(projectTitle)
     itemDiv.appendChild(itemTitle)
@@ -243,6 +244,7 @@ export const listItemsContent = () => {
     itemDiv.appendChild(dueDate)
     itemDiv.appendChild(priority)
     itemDiv.appendChild(isCompleted)
+    itemDiv.appendChild(editButton)
 
     return itemDiv
 }
