@@ -50,7 +50,8 @@ const documentListener = () => {
         } else if (e.target.closest("#delete-item-button")) {
             modalContent.innerHTML = ""
             deleteSingleItem(mProjectIndex, mListIndex)
-            populateListItemsContent(mProjectIndex, mListIndex)
+            clearProjectCards()
+            populateProjectCards()
             window.open("#", "_parent")
         } else if (!e.target.closest(".modal-content")) {
             modalContent.innerHTML = ""
@@ -112,7 +113,6 @@ export function addListItemListener() {
         listButtons[index].addEventListener("click", () => {
         mProjectIndex = index            
         })
-
     })
 }
 

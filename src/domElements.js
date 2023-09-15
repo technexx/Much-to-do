@@ -260,12 +260,19 @@ export const listItemsContent = () => {
     return itemDiv
 }
 
+//TODO: This needs to iterate through all items w/ in single project.
 export const populateListItemsContent = (projectIndex, listIndex) => {
     const allProjects = projectsFromLocalStorage()
     const project = allProjects[projectIndex]
 
     const modifiedProject = JSON.parse(project)
     const listItem = modifiedProject.lists[listIndex]
+
+    console.log("list index is " + listIndex)
+    console.log(modifiedProject)
+    console.log(modifiedProject.lists)
+
+
 
     const projectTitle = document.querySelector("#project-title-in-item")
     const itemTitle = document.querySelector("#item-title")

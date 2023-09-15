@@ -19,13 +19,10 @@ export function testPopulation() {
 export function addBlankProjectToLocalStorage() {
     // deleteAllProjects()
     setProjectKey()
-    console.log(localStorage)
 
     const content = document.querySelector("#add-project-title-input")
     const project = new Project(content.value, "")
     localStorage.setItem(("project-" + getProjectId()), JSON.stringify(project))
-
-    console.log(localStorage)
 }
 
 function setProjectKey() {
@@ -52,15 +49,17 @@ export function deleteAllProjects() {
 }
 
 export function deleteSingleItem(projectIndex, listIndex) {
-    const projectKeyArray = projectKeyArray()
-    const projectKey = projectKeyArray[projectIndex]
-    const parsedProject = parsedProject(projectIndex)
+    const keyArray = projectKeyArray()
+    const projectKey = keyArray[projectIndex]
+    const project = parsedProject(projectIndex)
 
-    const listArray = listArrayFromParsedProject(parsedProject)
-    listArray.splice(listIndex, 1, 0)
+    const listArray = listArrayFromParsedProject(project)
+    listArray.splice(listIndex, 1)
 
-    const modifiedProject = new Project(parsedProject.title, listArray)
+    const modifiedProject = new Project(project.title, listArray)
     localStorage.setItem(projectKey, JSON.stringify(modifiedProject))
+
+    console.log(localStorage)
 }
 
 const projectKeyArray = () => {
