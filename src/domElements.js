@@ -157,6 +157,7 @@ const projectCardContainer = () => {
 }
 
 export function populateProjectCards() {
+    // deleteAllProjects()
     const projectContainer = document.querySelector(".project-container")
     const allProjects = projectsFromLocalStorage()
 
@@ -184,9 +185,6 @@ export function populateProjectCards() {
         listDiv.classList.add("project-item-array")
 
         const project = allProjects[i]
-
-        // console.log(allProjects)
-        // console.log(project)
         const modifiedProject = JSON.parse(project)
  
         titleDiv.innerText = modifiedProject.title
@@ -228,9 +226,19 @@ export const listItemsContent = () => {
     const dueDate = document.createElement("p")
     const priority = document.createElement("p")
     const isCompleted = document.createElement("p")
+
+    const itemButtonDiv = document.createElement("div")
+    itemButtonDiv.classList.add("item-buttons")
+
     const editButton = document.createElement("button")
+    const deleteButton = document.createElement("button")
     editButton.innerHTML = "<img src='../src/images/pencil.svg'/>"
     editButton.style.width = "30px"
+    deleteButton.innerHTML = "<img src='../src/images/delete.svg'/>"
+    deleteButton.style.width = "30px"
+
+    itemButtonDiv.appendChild(deleteButton)
+    itemButtonDiv.appendChild(editButton)
 
     projectTitle.setAttribute("id", "project-title-in-item")
     itemTitle.setAttribute("id", "item-title")
@@ -246,7 +254,7 @@ export const listItemsContent = () => {
     itemDiv.appendChild(dueDate)
     itemDiv.appendChild(priority)
     itemDiv.appendChild(isCompleted)
-    itemDiv.appendChild(editButton)
+    itemDiv.appendChild(itemButtonDiv)
 
     return itemDiv
 }
