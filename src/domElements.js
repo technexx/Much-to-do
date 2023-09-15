@@ -247,6 +247,7 @@ export const listItemsContent = () => {
     priority.setAttribute("id", "item-priority")
     isCompleted.setAttribute("id", "item-isCompleted")
     editButton.setAttribute("id", "edit-item-button")
+    deleteButton.setAttribute("id", "delete-item-button")
 
     itemDiv.append(projectTitle)
     itemDiv.appendChild(itemTitle)

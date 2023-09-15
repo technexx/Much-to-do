@@ -1,4 +1,4 @@
-import { addBlankProjectToLocalStorage } from "./databaseOps"
+import { addBlankProjectToLocalStorage, deleteSingleItem } from "./databaseOps"
 import { deleteSingleProject } from "./databaseOps"
 import { deleteAllProjects } from "./databaseOps"
 import { clearProjectCards } from "./domElements"
@@ -41,11 +41,17 @@ const documentListener = () => {
             populateListItemsContent(mProjectIndex, mListIndex)
             window.open("#popup", "_parent")
         } else if (e.target.closest("#delete-project-button")) {
+
         } else if (e.target.closest("#edit-item-button")) {
             modalContent.innerHTML = ""
             modalContent.appendChild(addListItemsForm())
             populateListItemForm(mProjectIndex, mListIndex)
             addListItemSubmitButtonListener("edit")
+        } else if (e.target.closest("#delete-item-button")) {
+            modalContent.innerHTML = ""
+            deleteSingleItem(mProjectIndex, mListIndex)
+            populateListItemsContent(mProjectIndex, mListIndex)
+            window.open("#", "_parent")
         } else if (!e.target.closest(".modal-content")) {
             modalContent.innerHTML = ""
             window.open("#", "_parent")
@@ -109,14 +115,6 @@ export function addListItemListener() {
 
     })
 }
-
-// export function editListItemListener() {
-//     const editButton = document.querySelector("#edit-item-button")
-//     editButton.addEventListener("click", () => {
-//         console.log("clicked")
-//     })
-
-// }
 
 export function deleteSingleProjectButtonListener() {
     const buttons = document.querySelectorAll("#delete-project-button")

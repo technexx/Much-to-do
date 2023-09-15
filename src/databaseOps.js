@@ -19,6 +19,7 @@ export function testPopulation() {
 export function addBlankProjectToLocalStorage() {
     // deleteAllProjects()
     setProjectKey()
+    console.log(localStorage)
 
     const content = document.querySelector("#add-project-title-input")
     const project = new Project(content.value, "")
@@ -31,7 +32,7 @@ function setProjectKey() {
     const currentKey = localStorage.getItem(localStorage.key("project_id"))
 
     if (currentKey !== null) {
-        localStorage.setItem("project_id", (Number(currentKey + 1)))
+        localStorage.setItem("project_id", (Number(currentKey)+ 1))
     } else {
         localStorage.setItem("project_id", 0)
     }
