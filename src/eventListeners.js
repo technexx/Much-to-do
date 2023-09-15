@@ -37,12 +37,8 @@ const documentListener = () => {
             window.open("#popup", "_parent")
         } else if (e.target.closest(".project-item-container")) {
             modalContent.innerHTML = ""
-            // modalContent.appendChild(addListItemsForm())
-            // populateListItemForm(mProjectIndex, mListIndex)
-            // addListItemSubmitButtonListener("edit")
             modalContent.appendChild(listItemsContent())
             populateListItemsContent(mProjectIndex, mListIndex)
-            // editListItemListener()
             window.open("#popup", "_parent")
         } else if (e.target.closest("#delete-project-button")) {
         } else if (e.target.closest("#edit-item-button")) {

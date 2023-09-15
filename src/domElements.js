@@ -157,7 +157,6 @@ const projectCardContainer = () => {
 }
 
 export function populateProjectCards() {
-    // deleteAllProjects()
     const projectContainer = document.querySelector(".project-container")
     const allProjects = projectsFromLocalStorage()
 
@@ -185,6 +184,9 @@ export function populateProjectCards() {
         listDiv.classList.add("project-item-array")
 
         const project = allProjects[i]
+
+        // console.log(allProjects)
+        // console.log(project)
         const modifiedProject = JSON.parse(project)
  
         titleDiv.innerText = modifiedProject.title
@@ -228,7 +230,7 @@ export const listItemsContent = () => {
     const isCompleted = document.createElement("p")
     const editButton = document.createElement("button")
     editButton.innerHTML = "<img src='../src/images/pencil.svg'/>"
-    editButton.style.width = "40px"
+    editButton.style.width = "30px"
 
     projectTitle.setAttribute("id", "project-title-in-item")
     itemTitle.setAttribute("id", "item-title")

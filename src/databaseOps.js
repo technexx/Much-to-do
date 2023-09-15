@@ -18,11 +18,27 @@ export function testPopulation() {
 //If key is the same (e.g. project-x already exists), it will overwrite.
 export function addBlankProjectToLocalStorage() {
     // deleteAllProjects()
-    const numberOfCurrentProject = projectsFromLocalStorage().length
+    setProjectKey()
 
     const content = document.querySelector("#add-project-title-input")
     const project = new Project(content.value, "")
-    localStorage.setItem(("project-" + numberOfCurrentProject), JSON.stringify(project))
+    localStorage.setItem(("project-" + getProjectId()), JSON.stringify(project))
+
+    console.log(localStorage)
+}
+
+function setProjectKey() {
+    const currentKey = localStorage.getItem(localStorage.key("project_id"))
+
+    if (currentKey !== null) {
+        localStorage.setItem("project_id", (Number(currentKey + 1)))
+    } else {
+        localStorage.setItem("project_id", 0)
+    }
+}
+
+function getProjectId() {
+    return localStorage.getItem(localStorage.key("project_id"))
 }
 
 export function deleteSingleProject(index) {
